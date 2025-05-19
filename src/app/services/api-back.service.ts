@@ -84,7 +84,14 @@ export class ApiBackService {
   logout() {
     return this.request('POST', 'auth/logout');
   }
-  getEvents(): Observable<any> {
-    return this.request('GET', 'events');
+  getEvents(
+    search: string = '',
+    page: number = 1,
+    limit: number = 12,
+  ): Observable<any> {
+    return this.request(
+      'GET',
+      `events/?page=${page}&search=${search}&limit=${limit}`,
+    );
   }
 }

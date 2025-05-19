@@ -1,0 +1,36 @@
+<div class="d-flex gap-3">
+  <button
+    class="btn btn-outline-warning"
+    (click)="previousPage()"
+    [disabled]="page <= 1"
+  >
+    Précédent
+  </button>
+  <button
+    class="btn btn-outline-warning"
+    (click)="nextPage()"
+    [disabled]="page >= totalPages"
+  >
+    Suivant
+  </button>
+</div>
+<label for="search"> Recherche </label>
+<input
+  type="text"
+  class="form-control w-75 w-md-25"
+  [(ngModel)]="search"
+  (ngModelChange)="onSearchChange()"
+  placeholder="Recherche..."
+  name="search"
+/>
+<label for="limit"> Limite </label>
+<select
+  class="form-control w-75 w-md-25"
+  [(ngModel)]="limit"
+  (change)="onLimitChange()"
+  name="limit"
+>
+  <option [value]="12">12</option>
+  <option [value]="24">24</option>
+  <option [value]="48">48</option>
+</select>

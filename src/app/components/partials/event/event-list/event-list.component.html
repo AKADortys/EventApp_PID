@@ -1,11 +1,16 @@
 <h3 class="display-1 text-white">Liste Des Events</h3>
 
-<div class="d-flex">
-  <button (click)="getEvents()">Actualiser</button>
-</div>
+<app-pagination-controls-component
+  [page]="parameters.page"
+  [limit]="parameters.limit"
+  [totalPages]="parameters.totalPages"
+  (changePage)="onPageChanged($event.search, $event.page, $event.limit)"
+  class="d-flex flex-column flex-md-row align-items-center justify-content-evenly gap-3 my-2 bg-dark bg-gradient rounded p-4 border text-light"
+>
+</app-pagination-controls-component>
 
 @for (item of events; track $index) {
-  <div class="card col-4 p-0 my-1">
+  <div class="card col-10 col-md-4 col-lg-3 p-0 my-1">
     <div class="card-header bg-dark bg-gradient">
       <h5 class="text-primary">{{ item.title }}</h5>
       <span class="text-light">{{ item.sportType }}</span>
@@ -16,6 +21,7 @@
       <p>
         Lieu : <span class="text-info">{{ item.location }}</span>
       </p>
+      <a href="/events/{{ item._id }}" class="btn btn-primary"> Voir</a>
     </div>
     <div
       class="card-footer d-flex justify-content-between bg-dark bg-gradient text-light"
