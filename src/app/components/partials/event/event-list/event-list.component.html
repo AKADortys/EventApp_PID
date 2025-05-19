@@ -1,0 +1,32 @@
+<h3 class="display-1 text-white">Liste Des Events</h3>
+
+<div class="d-flex">
+  <button (click)="getEvents()">Actualiser</button>
+</div>
+
+@for (item of events; track $index) {
+  <div class="card col-4 p-0 my-1">
+    <div class="card-header bg-dark bg-gradient">
+      <h5 class="text-primary">{{ item.title }}</h5>
+      <span class="text-light">{{ item.sportType }}</span>
+    </div>
+    <div class="card-body">
+      <h6>Informations</h6>
+      <p>{{ item.description }}</p>
+      <p>
+        Lieu : <span class="text-info">{{ item.location }}</span>
+      </p>
+    </div>
+    <div
+      class="card-footer d-flex justify-content-between bg-dark bg-gradient text-light"
+    >
+      <p>
+        Date prévue: <span>{{ item.date }}</span>
+      </p>
+    </div>
+  </div>
+} @empty {
+  <div>
+    <p>Aucuns events disponible</p>
+  </div>
+}
