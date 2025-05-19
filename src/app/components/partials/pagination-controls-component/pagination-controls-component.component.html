@@ -4,14 +4,16 @@
     (click)="previousPage()"
     [disabled]="page <= 1"
   >
-    Précédent
+    Préc.
+    <i class="bi bi-arrow-left-square-fill"></i>
   </button>
   <button
     class="btn btn-outline-warning"
     (click)="nextPage()"
     [disabled]="page >= totalPages"
   >
-    Suivant
+    Suiv.
+    <i class="bi bi-arrow-right-square-fill"></i>
   </button>
 </div>
 <label for="search"> Recherche </label>

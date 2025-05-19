@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { searchQuery } from '../../../../models/responses.interface';
 import { FormsModule } from '@angular/forms';
 import { PaginationControlsComponentComponent } from '../../pagination-controls-component/pagination-controls-component.component';
+import { formatMongoDate } from '../../../../utils/date.util';
 @Component({
   selector: 'app-event-list',
   standalone: true,
@@ -37,6 +38,10 @@ export class EventListComponent implements OnInit {
     this.apiBack.getEvents(search, page, limit).subscribe({
       next: (response: any) => {
         const { data, ...rest } = response;
+        data.forEach((item: any) => {
+          item.date = formatMongoDate(item.date);
+        });
+
         this.events = data;
         this.parameters = rest;
         this.error = '';
