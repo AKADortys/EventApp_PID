@@ -4,10 +4,10 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-pagination-controls-component',
-  standalone: true, // ✅ indispensable ici
-  imports: [FormsModule, CommonModule], // ✅ FormsModule pour ngModel
+  standalone: true,
+  imports: [FormsModule, CommonModule],
   templateUrl: './pagination-controls-component.component.html',
-  styleUrls: ['./pagination-controls-component.component.scss'], // corrigé aussi ici
+  styleUrls: ['./pagination-controls-component.component.scss'],
 })
 export class PaginationControlsComponentComponent {
   @Input() page!: number;

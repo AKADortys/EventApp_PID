@@ -94,4 +94,8 @@ export class ApiBackService {
       `events/?page=${page}&search=${search}&limit=${limit}`,
     );
   }
+
+  getEventById(id: string): Observable<any> {
+    return this.request('GET', `events/${id}`);
+  }
 }

@@ -5,15 +5,22 @@ import { searchQuery } from '../../../../models/responses.interface';
 import { FormsModule } from '@angular/forms';
 import { PaginationControlsComponentComponent } from '../../pagination-controls-component/pagination-controls-component.component';
 import { formatMongoDate } from '../../../../utils/date.util';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-event-list',
   standalone: true,
-  imports: [CommonModule, PaginationControlsComponentComponent, FormsModule],
+  imports: [
+    CommonModule,
+    PaginationControlsComponentComponent,
+    FormsModule,
+    RouterModule,
+  ],
   templateUrl: './event-list.component.html',
-  styleUrls: ['./event-list.component.scss'], // corrigé ici
+  styleUrls: ['./event-list.component.scss'],
 })
 export class EventListComponent implements OnInit {
-  events: any[] = []; // corrigé ici
+  currentTime: Date = new Date();
+  events: any[] = [];
   parameters: searchQuery = {
     page: 1,
     total: 0,
@@ -39,7 +46,8 @@ export class EventListComponent implements OnInit {
       next: (response: any) => {
         const { data, ...rest } = response;
         data.forEach((item: any) => {
-          item.date = formatMongoDate(item.date);
+          item.fDate = formatMongoDate(item.date);
+          item.date = new Date(item.date);
         });
 
         this.events = data;

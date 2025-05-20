@@ -4,7 +4,6 @@
     (click)="previousPage()"
     [disabled]="page <= 1"
   >
-    Préc.
     <i class="bi bi-arrow-left-square-fill"></i>
   </button>
   <button
@@ -12,27 +11,31 @@
     (click)="nextPage()"
     [disabled]="page >= totalPages"
   >
-    Suiv.
     <i class="bi bi-arrow-right-square-fill"></i>
   </button>
 </div>
-<label for="search"> Recherche </label>
-<input
-  type="text"
-  class="form-control w-75 w-md-25"
-  [(ngModel)]="search"
-  (ngModelChange)="onSearchChange()"
-  placeholder="Recherche..."
-  name="search"
-/>
-<label for="limit"> Limite </label>
-<select
-  class="form-control w-75 w-md-25"
-  [(ngModel)]="limit"
-  (change)="onLimitChange()"
-  name="limit"
->
-  <option [value]="12">12</option>
-  <option [value]="24">24</option>
-  <option [value]="48">48</option>
-</select>
+<label for="search">
+  Recherche <i class="bi bi-search"></i>
+  <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="search"
+    (ngModelChange)="onSearchChange()"
+    placeholder="Recherche..."
+    id="search"
+  />
+</label>
+<label for="limit">
+  Limite
+  <i class="bi bi-card-list"></i>
+  <select
+    class="form-control"
+    [(ngModel)]="limit"
+    (change)="onLimitChange()"
+    id="limit"
+  >
+    <option [value]="12">12</option>
+    <option [value]="24">24</option>
+    <option [value]="48">48</option>
+  </select>
+</label>
