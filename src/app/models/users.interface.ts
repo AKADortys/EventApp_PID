@@ -13,7 +13,7 @@ export interface User {
   lastName: string;
   mail: string;
   phone: string;
-  password: string;
+  password?: string;
   role: string;
   createdAt: string;
   updatedAt: string;

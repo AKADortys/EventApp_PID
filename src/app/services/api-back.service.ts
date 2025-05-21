@@ -114,4 +114,16 @@ export class ApiBackService {
   createRegistration(data: any): Observable<any> {
     return this.request('POST', 'registrations', data);
   }
+
+  getUserRegistrations(
+    id: string,
+    page = 1,
+    limit = 12,
+    search = '',
+  ): Observable<any> {
+    return this.request(
+      'GET',
+      `users/${id}/registrations?page=${page}&limit=${limit}&search=${search}`,
+    );
+  }
 }

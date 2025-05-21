@@ -1,0 +1,46 @@
+<h2
+  class="display-2 py-2 text-primary text-center col-12 mx-auto rounded border shadow-sm bg-dark"
+>
+  Inscriptions
+</h2>
+<app-pagination-controls-component
+  [limit]="parameters.limit"
+  [page]="parameters.page"
+  [totalPages]="parameters.totalPages"
+  (changePage)="
+    getRegistrations(userId, $event.page, $event.limit, $event.search)
+  "
+  class="d-flex flex-column flex-md-row align-items-center gap-1 bg-dark bg-gradient rounded p-1 text-light"
+></app-pagination-controls-component>
+<div class="row">
+  @for (item of registrations; track item._id) {
+    <div class="card shadow-sm border col-12 col-xl-6 my-1 p-0">
+      <div class="card-header bg-dark bg-gradient text-white">
+        <h5 class="card-title mb-0">
+          {{ item.event.title }} -
+          {{ item.event.sportType | titlecase }}
+        </h5>
+      </div>
+      <div class="card-body">
+        <p><strong>Lieu :</strong> {{ item.event.location }}</p>
+        <p>
+          <strong>Date :</strong>
+          {{ item.event.date | date: "medium" }}
+        </p>
+        <hr />
+        <p>
+          <strong>Participant :</strong> {{ item.user.name }}
+          {{ item.user.lastName }}
+        </p>
+        <p><strong>Email :</strong> {{ item.user.mail }}</p>
+        <p>
+          <span class="badge bg-success me-1">{{ item.status }}</span>
+          <span class="badge bg-info">{{ item.paymentStatus }}</span>
+        </p>
+      </div>
+      <div class="card-footer text-light small bg-dark bg-gradient">
+        Créée le : {{ item.createdAt | date: "short" }}
+      </div>
+    </div>
+  }
+</div>

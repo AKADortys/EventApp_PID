@@ -1,0 +1,10 @@
+<div class="d-flex flex-column flex-md-row pb-5">
+  <aside class="col-12 col-md-4 bg-dark bg-gradient rounded container my-1">
+    <app-user-overview></app-user-overview>
+  </aside>
+  <main class="col-12 col-md-8 container">
+    <app-user-registration-list
+      [userId]="user!._id"
+    ></app-user-registration-list>
+  </main>
+</div>

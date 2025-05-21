@@ -1,0 +1,29 @@
+<div class="container mt-4" *ngIf="user">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Informations de l'utilisateur</h5>
+    </div>
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Nom :</strong> {{ user.name }}</li>
+        <li class="list-group-item">
+          <strong>Prénom :</strong> {{ user.lastName }}
+        </li>
+        <li class="list-group-item">
+          <strong>Email :</strong> {{ user.mail }}
+        </li>
+        <li class="list-group-item">
+          <strong>Téléphone :</strong> {{ user.phone }}
+        </li>
+        <li class="list-group-item"><strong>Rôle :</strong> {{ user.role }}</li>
+        <li class="list-group-item">
+          <strong>Créé le :</strong> {{ user.createdAt | date: "short" }}
+        </li>
+        <li class="list-group-item">
+          <strong>Modifié le :</strong> {{ user.updatedAt | date: "short" }}
+        </li>
+        <li class="list-group-item"><strong>ID :</strong> {{ user._id }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
