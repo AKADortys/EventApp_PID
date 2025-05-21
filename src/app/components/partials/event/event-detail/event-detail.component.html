@@ -13,15 +13,17 @@
     <div class="card-header bg-dark bg-gradient">
       <h1 class="card-title text-primary">{{ event.title }}</h1>
     </div>
-    <div class="card-body">
-      <p><strong>Description :</strong> {{ event.description }}</p>
-      <p><strong>Date :</strong> {{ event.date | date: "fullDate" }}</p>
-      <p><strong>Lieu :</strong> {{ event.location }}</p>
-      <p>
+    <div class="card-body px-0 pb-0">
+      <p class="mx-2"><strong>Description :</strong> {{ event.description }}</p>
+      <p class="mx-2">
+        <strong>Date :</strong> {{ event.date | date: "fullDate" }}
+      </p>
+      <p class="mx-2"><strong>Lieu :</strong> {{ event.location }}</p>
+      <p class="mx-2">
         <strong>Nombre max de participants :</strong>
         {{ event.maxParticipants }}
       </p>
-      <p><strong>Type de sport :</strong> {{ event.sportType }}</p>
+      <p class="mx-2"><strong>Type de sport :</strong> {{ event.sportType }}</p>
 
       <div
         *ngIf="event?.participants"
@@ -37,6 +39,13 @@
           </a>
         }
       </div>
+
+      <app-registration-form
+        [eventId]="eventId"
+        [userId]="userId"
+        *ngIf="role === 'sportif'"
+        class=""
+      ></app-registration-form>
 
       <div
         *ngIf="event.organizer"

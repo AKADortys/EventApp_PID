@@ -2,15 +2,18 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ApiBackService } from '../../../../services/api-back.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { RegistrationFormComponent } from '../../registration/registration-form/registration-form.component';
 
 @Component({
   selector: 'app-event-detail',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, RegistrationFormComponent],
   templateUrl: './event-detail.component.html',
   styleUrl: './event-detail.component.scss',
 })
 export class EventDetailComponent implements OnInit {
   @Input() eventId!: string;
+  @Input() userId!: string | undefined;
+  @Input() role!: string | undefined;
   event!: any | null;
   isLoading = false;
   error!: string | null;
@@ -27,7 +30,6 @@ export class EventDetailComponent implements OnInit {
     this.apiBack.getEventById(this.eventId).subscribe({
       next: (response: any) => {
         this.event = response;
-        console.log(response);
       },
       error: (err: Error) => {
         this.error = err.message;

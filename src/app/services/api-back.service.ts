@@ -110,4 +110,8 @@ export class ApiBackService {
       `events/${id}/registrations?page=${page}&limit=${limit}&search=${search}`,
     );
   }
+
+  createRegistration(data: any): Observable<any> {
+    return this.request('POST', 'registrations', data);
+  }
 }

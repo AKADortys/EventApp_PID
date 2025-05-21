@@ -1,6 +1,11 @@
-<app-event-detail [eventId]="eventId"></app-event-detail>
-
-<app-event-registration-list
-  *ngIf="user?.role !== 'sportif'"
+<app-event-detail
   [eventId]="eventId"
-></app-event-registration-list>
+  [userId]="user?._id"
+  [role]="user?.role"
+></app-event-detail>
+
+@if (user?.role !== "sportif") {
+  <app-event-registration-list
+    [eventId]="eventId"
+  ></app-event-registration-list>
+}
