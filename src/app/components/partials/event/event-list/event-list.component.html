@@ -1,42 +1,45 @@
-<h3 class="display-1 text-white">Liste Des Events</h3>
+<h3
+  class="display-1 text-primary text-center col-12 col-md-6 rounded border shadow-sm bg-dark"
+>
+  Liste Des Events
+</h3>
 
 <app-pagination-controls-component
   [page]="parameters.page"
   [limit]="parameters.limit"
   [totalPages]="parameters.totalPages"
   (changePage)="onPageChanged($event.search, $event.page, $event.limit)"
-  class="d-flex flex-column flex-md-row align-items-center justify-content-evenly gap-3 my-2 bg-dark bg-gradient rounded p-4 border text-light"
+  class="d-flex flex-column flex-md-row align-items-center gap-1 bg-dark bg-gradient rounded p-1 text-light"
 >
 </app-pagination-controls-component>
-
-@for (item of events; track $index) {
-  @if (item.date > currentTime) {
-    <div class="card col-10 col-md-6 col-lg-4 p-0 my-1 cartes">
-      <div class="card-header bg-dark bg-gradient">
-        <h5 class="text-primary">{{ item.title }}</h5>
-        <span class="text-light">{{ item.sportType }}</span>
-      </div>
-      <div class="card-body">
-        <h6>Informations</h6>
-        <p>{{ item.description }}</p>
-        <p>
-          Lieu : <span class="text-info">{{ item.location }}</span>
-        </p>
-        <a
-          [routerLink]="['/dashboard/events', item._id]"
-          class="btn btn-primary"
-          >Voir</a
-        >
-      </div>
-      <div
-        class="card-footer d-flex justify-content-between bg-dark bg-gradient text-light"
-      >
-        <p>
-          Date prévue: <span>{{ item.fDate }}</span>
-        </p>
-      </div>
+@for (item of events; track item._id) {
+  <div
+    class="card col-12 col-md-6 col-lg-4 col-xl-3 p-0 cartes"
+    [ngStyle]="{ animationDelay: $index * 100 + 'ms' }"
+  >
+    <div class="card-header bg-dark bg-gradient">
+      <h5 class="text-primary">{{ item.title }}</h5>
+      <span class="text-light">{{ item.sportType }}</span>
     </div>
-  }
+    <div class="card-body">
+      <h6>Informations</h6>
+      <p>{{ item.description }}</p>
+      <p>
+        Lieu de l'événement:
+        <span class="text-info">{{ item.location }}</span>
+      </p>
+      <a [routerLink]="['/dashboard/events', item._id]" class="btn btn-primary">
+        Voir <i class="bi bi-search"></i>
+      </a>
+    </div>
+    <div
+      class="card-footer d-flex justify-content-between bg-dark bg-gradient text-light"
+    >
+      <p>
+        Date prévue: <span class="text-warning">{{ item.fDate }}</span>
+      </p>
+    </div>
+  </div>
 } @empty {
   <div>
     <p>Aucuns events disponible</p>

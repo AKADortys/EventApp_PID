@@ -1,0 +1,59 @@
+<div class="container my-4">
+  <div *ngIf="isLoading" class="text-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Chargement...</span>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger" role="alert">
+    {{ error }}
+  </div>
+
+  <div *ngIf="registrations && registrations.length" class="row">
+    <app-pagination-controls-component
+      [page]="parameters.page"
+      [limit]="parameters.limit"
+      [totalPages]="parameters.totalPages"
+      (changePage)="pageChanged($event.page, $event.limit, $event.search)"
+      class="d-flex flex-column flex-md-row align-items-center gap-1 bg-dark bg-gradient rounded p-1 text-light"
+    >
+    </app-pagination-controls-component>
+    <div class="col-md-6 mb-4" *ngFor="let registration of registrations">
+      <div class="card shadow-sm h-100 border-primary">
+        <div class="card-header bg-primary text-white">
+          <h5 class="card-title mb-0">
+            {{ registration.event.title }} -
+            {{ registration.event.sportType | titlecase }}
+          </h5>
+        </div>
+        <div class="card-body">
+          <p><strong>Lieu :</strong> {{ registration.event.location }}</p>
+          <p>
+            <strong>Date :</strong>
+            {{ registration.event.date | date: "medium" }}
+          </p>
+          <hr />
+          <p>
+            <strong>Participant :</strong> {{ registration.user.name }}
+            {{ registration.user.lastName }}
+          </p>
+          <p><strong>Email :</strong> {{ registration.user.mail }}</p>
+          <p>
+            <span class="badge bg-success me-1">{{ registration.status }}</span>
+            <span class="badge bg-info">{{ registration.paymentStatus }}</span>
+          </p>
+        </div>
+        <div class="card-footer text-muted small">
+          Créée le : {{ registration.createdAt | date: "short" }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="registrations && registrations.length === 0"
+    class="alert alert-info text-center"
+  >
+    Aucune inscription trouvée pour cet événement.
+  </div>
+</div>

@@ -1,1 +1,6 @@
 <app-event-detail [eventId]="eventId"></app-event-detail>
+
+<app-event-registration-list
+  *ngIf="user?.role !== 'sportif'"
+  [eventId]="eventId"
+></app-event-registration-list>

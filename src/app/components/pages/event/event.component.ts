@@ -3,10 +3,12 @@ import { AuthUserService } from '../../../services/auth-user.service';
 import { User } from '../../../models/users.interface';
 import { ActivatedRoute } from '@angular/router';
 import { EventDetailComponent } from '../../partials/event/event-detail/event-detail.component';
+import { EventRegistrationListComponent } from '../../partials/event/event-registration-list/event-registration-list.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-event-details',
-  imports: [EventDetailComponent],
+  imports: [CommonModule, EventDetailComponent, EventRegistrationListComponent],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss',
 })

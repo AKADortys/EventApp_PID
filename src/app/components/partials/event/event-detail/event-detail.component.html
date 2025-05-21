@@ -1,4 +1,4 @@
-<div *ngIf="isLoading" class="text-center my-5">
+<div *ngIf="isLoading" class="text-center">
   <div class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Chargement...</span>
   </div>
@@ -8,12 +8,12 @@
   {{ error }}
 </div>
 
-<div *ngIf="event" class="container mt-4">
+<div *ngIf="event" class="container">
   <div class="card shadow-sm">
-    <div class="card-body">
+    <div class="card-header bg-dark bg-gradient">
       <h1 class="card-title text-primary">{{ event.title }}</h1>
-      <hr />
-
+    </div>
+    <div class="card-body">
       <p><strong>Description :</strong> {{ event.description }}</p>
       <p><strong>Date :</strong> {{ event.date | date: "fullDate" }}</p>
       <p><strong>Lieu :</strong> {{ event.location }}</p>
@@ -22,26 +22,31 @@
         {{ event.maxParticipants }}
       </p>
       <p><strong>Type de sport :</strong> {{ event.sportType }}</p>
-      <div class="list-group">
+
+      <div
+        *ngIf="event?.participants"
+        class="list-group col-12 col-md-6 col-lg-4"
+      >
         <h4>Listes des participants</h4>
         @for (item of event?.participants; track $index) {
           <a
-            class="list-group-item list-group-item-action"
+            class="list-group-item list-group-item-action list-group-item-primary"
             [routerLink]="['/dashboard/user/', item._id]"
           >
-            {{ item.name + " " + item.lastName }}
+            {{ item.name + " " + item.lastName + " - " + item.mail }}
           </a>
         }
       </div>
 
-      <div *ngIf="event.organizer" class="mt-4">
-        <h4 class="text-secondary">Organisateur</h4>
-        <p>
-          <strong>Nom :</strong> {{ event.organizer.name }}
-          {{ event.organizer.lastName }}
+      <div
+        *ngIf="event.organizer"
+        class="bg-dark bg-gradient card-footer d-flex flex-column flex-md-row justify-content-center gap-3"
+      >
+        <p class="text-primary">Organisateur</p>
+        <p class="p-0 text-light">
+          {{ event.organizer.name + " " + event.organizer.lastName }}
         </p>
         <p>
-          <strong>Email :</strong>
           <a href="mailto:{{ event.organizer.mail }}">{{
             event.organizer.mail
           }}</a>

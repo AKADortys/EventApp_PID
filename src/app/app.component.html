@@ -36,10 +36,11 @@
                 <a
                   class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
                   routerLink="/dashboard/profile"
-                  >Profil</a
+                  >Profil {{ user.role }}</a
                 >
                 <i class="bi bi-person-circle"></i>
               </li>
+              <li><hr class="dropdown-divider" /></li>
               <li class="d-flex justify-content-around">
                 <a
                   class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
@@ -62,7 +63,7 @@
     </div>
   </nav>
 </header>
-<main class="py-4">
+<main class="mt-5 pt-4">
   <router-outlet></router-outlet>
 </main>
 <footer class="fixed-bottom bg-dark border-top">

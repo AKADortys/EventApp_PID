@@ -98,4 +98,16 @@ export class ApiBackService {
   getEventById(id: string): Observable<any> {
     return this.request('GET', `events/${id}`);
   }
+
+  getEventRegistrations(
+    id: string,
+    page = 1,
+    limit = 12,
+    search = '',
+  ): Observable<any> {
+    return this.request(
+      'GET',
+      `events/${id}/registrations?page=${page}&limit=${limit}&search=${search}`,
+    );
+  }
 }
