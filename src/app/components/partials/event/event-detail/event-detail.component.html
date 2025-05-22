@@ -30,7 +30,7 @@
         class="list-group col-12 col-md-6 col-lg-4"
       >
         <h4>Listes des participants</h4>
-        @for (item of event?.participants; track $index) {
+        @for (item of event?.participants; track item._id) {
           <a
             class="list-group-item list-group-item-action list-group-item-primary"
             [routerLink]="['/dashboard/user/', item._id]"
@@ -43,8 +43,11 @@
       <app-registration-form
         [eventId]="eventId"
         [userId]="userId"
-        *ngIf="role === 'sportif'"
-        class=""
+        [isRegister]="isResgister"
+        *ngIf="
+          role === 'sportif' &&
+          event.maxParticipants > event.participants.length
+        "
       ></app-registration-form>
 
       <div

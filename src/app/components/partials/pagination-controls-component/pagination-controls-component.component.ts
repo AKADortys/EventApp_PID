@@ -14,6 +14,7 @@ export class PaginationControlsComponentComponent {
   @Input() totalPages!: number;
   @Input() limit!: number;
   @Input() search: string = '';
+  @Input() total!: number;
 
   @Output() changePage = new EventEmitter<{
     search: string;

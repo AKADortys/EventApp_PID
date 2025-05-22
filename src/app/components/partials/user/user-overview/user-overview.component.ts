@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../../models/users.interface';
 import { AuthUserService } from '../../../../services/auth-user.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user-overview',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './user-overview.component.html',
   styleUrl: './user-overview.component.scss',
 })

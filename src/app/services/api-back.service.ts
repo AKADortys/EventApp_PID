@@ -75,6 +75,7 @@ export class ApiBackService {
     return throwError(() => new Error(errorMessage));
   }
 
+  //AUTH
   register(userData: UserRegist): Observable<User> {
     return this.request('POST', 'users', userData);
   }
@@ -84,6 +85,7 @@ export class ApiBackService {
   logout() {
     return this.request('POST', 'auth/logout');
   }
+  //EVENT
   getEvents(
     search: string = '',
     page: number = 1,
@@ -99,6 +101,7 @@ export class ApiBackService {
     return this.request('GET', `events/${id}`);
   }
 
+  //REGISTRATION
   getEventRegistrations(
     id: string,
     page = 1,
@@ -111,10 +114,23 @@ export class ApiBackService {
     );
   }
 
+  findRegistration(data: any): Observable<any> {
+    return this.request('POST', 'registrations/findOne', data);
+  }
+
   createRegistration(data: any): Observable<any> {
     return this.request('POST', 'registrations', data);
   }
 
+  updateRegistration(id: string, data: any): Observable<any> {
+    return this.request('PUT', `registrations/${id}`, data);
+  }
+
+  deleteRegistration(id: string): Observable<any> {
+    return this.request('DELETE', `registrations/${id}`);
+  }
+
+  //USER
   getUserRegistrations(
     id: string,
     page = 1,

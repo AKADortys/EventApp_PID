@@ -1,4 +1,33 @@
-<button class="btn btn-success m-2" (click)="registerEvent()">
-  S'incrire à l'événement
-  <i class="bi bi-pencil-fill"></i>
-</button>
+<div class="registration-form">
+  <!-- Indicateur de chargement -->
+  <div *ngIf="isLoading" class="text-center my-3">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Chargement...</span>
+    </div>
+  </div>
+
+  <!-- Message d'erreur -->
+  <div *ngIf="error" class="alert alert-danger" role="alert">
+    {{ error }}
+  </div>
+
+  <!-- Affichage conditionnel des boutons selon l'état d'inscription -->
+  <ng-container *ngIf="!isLoading">
+    <button
+      *ngIf="isRegister"
+      class="btn btn-danger m-2"
+      (click)="unRegisterEvent()"
+    >
+      Annuler l'inscription
+    </button>
+
+    <button
+      *ngIf="!isRegister"
+      class="btn btn-success m-2"
+      (click)="registerEvent()"
+    >
+      S'inscrire à l'événement
+      <i class="bi bi-pencil-fill"></i>
+    </button>
+  </ng-container>
+</div>

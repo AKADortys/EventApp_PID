@@ -3,10 +3,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { searchQuery } from '../../../../models/responses.interface';
 import { ApiBackService } from '../../../../services/api-back.service';
 import { PaginationControlsComponentComponent } from '../../pagination-controls-component/pagination-controls-component.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user-registration-list',
-  imports: [CommonModule, PaginationControlsComponentComponent],
+  imports: [CommonModule, PaginationControlsComponentComponent, RouterModule],
   templateUrl: './user-registration-list.component.html',
   styleUrl: './user-registration-list.component.scss',
 })

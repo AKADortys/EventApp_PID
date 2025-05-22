@@ -2,11 +2,13 @@
   class="display-2 py-2 text-primary text-center col-12 mx-auto rounded border shadow-sm bg-dark"
 >
   Inscriptions
+  <span class="badge bg-warning border">{{ parameters.total }}</span>
 </h2>
 <app-pagination-controls-component
   [limit]="parameters.limit"
   [page]="parameters.page"
   [totalPages]="parameters.totalPages"
+  [total]="parameters.total"
   (changePage)="
     getRegistrations(userId, $event.page, $event.limit, $event.search)
   "
@@ -33,6 +35,13 @@
           {{ item.user.lastName }}
         </p>
         <p><strong>Email :</strong> {{ item.user.mail }}</p>
+        <a
+          [routerLink]="['/dashboard/events', item.event._id]"
+          class="btn btn-primary mb-2"
+        >
+          Voir plus
+          <i class="bi bi-search"></i
+        ></a>
         <p>
           <span class="badge bg-success me-1">{{ item.status }}</span>
           <span class="badge bg-info">{{ item.paymentStatus }}</span>

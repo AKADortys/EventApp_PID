@@ -17,6 +17,7 @@ export class EventDetailComponent implements OnInit {
   event!: any | null;
   isLoading = false;
   error!: string | null;
+  isResgister = false;
 
   constructor(private readonly apiBack: ApiBackService) {}
 
@@ -30,6 +31,12 @@ export class EventDetailComponent implements OnInit {
     this.apiBack.getEventById(this.eventId).subscribe({
       next: (response: any) => {
         this.event = response;
+        const isAlreadyRegis = this.event.participants.find(
+          (n: any) => n._id === this.userId,
+        );
+        if (isAlreadyRegis) {
+          this.isResgister = true;
+        }
       },
       error: (err: Error) => {
         this.error = err.message;

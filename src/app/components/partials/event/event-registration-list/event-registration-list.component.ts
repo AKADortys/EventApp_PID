@@ -39,9 +39,9 @@ export class EventRegistrationListComponent implements OnInit {
         next: (response) => {
           this.isLoading = true;
           const { data, ...rest } = response;
+          console.log(rest);
           this.registrations = data;
           this.parameters = rest;
-          console.log(this.registrations);
         },
         error: (err: Error) => {
           this.error = err.message;
