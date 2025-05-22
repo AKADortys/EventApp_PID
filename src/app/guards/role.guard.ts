@@ -42,6 +42,6 @@ export class RoleGuard implements CanActivate {
         this.router.navigate(['/dashboard/home']);
     }
 
-    return false; // on retourne false car la redirection prend le relais
+    return false;
   }
 }

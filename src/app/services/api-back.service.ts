@@ -142,4 +142,8 @@ export class ApiBackService {
       `users/${id}/registrations?page=${page}&limit=${limit}&search=${search}`,
     );
   }
+
+  updateUser(id: string | undefined, data: any): Observable<any> {
+    return this.request('PUT', `users/${id}`, data);
+  }
 }

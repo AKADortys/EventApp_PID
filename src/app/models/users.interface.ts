@@ -4,7 +4,7 @@ export interface UserRegist {
   password: string;
   phone: string;
   mail: string;
-  role: string;
+  role?: string;
 }
 
 export interface User {
