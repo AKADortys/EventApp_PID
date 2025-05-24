@@ -21,7 +21,6 @@ export class ApiBackService {
       'Content-Type': 'application/json',
     });
   }
-
   private request<T>(
     method: string,
     endpoint: string,
@@ -32,7 +31,7 @@ export class ApiBackService {
 
     const options = {
       headers: headers,
-      withCredentials: true, // Inclure les cookies dans les requêtes
+      withCredentials: true, // Inclure les cookies
     };
 
     switch (method) {
@@ -56,7 +55,6 @@ export class ApiBackService {
         throw new Error(`Method ${method} not supported.`);
     }
   }
-
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Une erreur inconnue est survenue.';
 
@@ -74,7 +72,6 @@ export class ApiBackService {
 
     return throwError(() => new Error(errorMessage));
   }
-
   //AUTH
   register(userData: UserRegist): Observable<User> {
     return this.request('POST', 'users', userData);
@@ -96,11 +93,20 @@ export class ApiBackService {
       `events/?page=${page}&search=${search}&limit=${limit}`,
     );
   }
-
   getEventById(id: string): Observable<any> {
     return this.request('GET', `events/${id}`);
   }
-
+  getEventByOrganizer(
+    id: string | undefined,
+    page = 1,
+    limit = 12,
+    search = '',
+  ): Observable<any> {
+    return this.request(
+      'GET',
+      `events/${id}/organizer?page=${page}&limit=${limit}&search=${search}`,
+    );
+  }
   //REGISTRATION
   getEventRegistrations(
     id: string,
@@ -113,23 +119,18 @@ export class ApiBackService {
       `events/${id}/registrations?page=${page}&limit=${limit}&search=${search}`,
     );
   }
-
   findRegistration(data: any): Observable<any> {
     return this.request('POST', 'registrations/findOne', data);
   }
-
   createRegistration(data: any): Observable<any> {
     return this.request('POST', 'registrations', data);
   }
-
   updateRegistration(id: string, data: any): Observable<any> {
     return this.request('PUT', `registrations/${id}`, data);
   }
-
   deleteRegistration(id: string): Observable<any> {
     return this.request('DELETE', `registrations/${id}`);
   }
-
   //USER
   getUserRegistrations(
     id: string,
@@ -142,7 +143,6 @@ export class ApiBackService {
       `users/${id}/registrations?page=${page}&limit=${limit}&search=${search}`,
     );
   }
-
   updateUser(id: string | undefined, data: any): Observable<any> {
     return this.request('PUT', `users/${id}`, data);
   }
