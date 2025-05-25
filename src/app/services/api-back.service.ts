@@ -7,12 +7,13 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { UserRegist, User } from '../models/users.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiBackService {
-  private baseUrl = 'http://localhost:3300';
+  private baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
   private getHeaders(): HttpHeaders {
@@ -106,6 +107,15 @@ export class ApiBackService {
       'GET',
       `events/${id}/organizer?page=${page}&limit=${limit}&search=${search}`,
     );
+  }
+  createEvent(data: any): Observable<any> {
+    return this.request('POST', 'events', data);
+  }
+  updateEvent(id: string | null, data: any): Observable<any> {
+    return this.request('PUT', `events/${id}`, data);
+  }
+  deleteEvent(id: string): Observable<any> {
+    return this.request('DELETE', `events/${id}`);
   }
   //REGISTRATION
   getEventRegistrations(

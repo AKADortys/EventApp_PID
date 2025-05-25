@@ -10,6 +10,7 @@ import { RoleGuard } from './guards/role.guard';
 import { SportifProfileComponent } from './components/pages/sportif-profile/sportif-profile.component';
 import { AdminProfileComponent } from './components/pages/admin-profile/admin-profile.component';
 import { OrganizerProfileComponent } from './components/pages/organizer-profile/organizer-profile.component';
+import { EventFormComponent } from './components/partials/event/event-form/event-form.component';
 
 export const routes: Routes = [
   { path: '', canActivate: [guestGuard], component: AuthComponent },
@@ -26,10 +27,17 @@ export const routes: Routes = [
       { path: 'profile/sportif', component: SportifProfileComponent },
       { path: 'profile/admin', component: AdminProfileComponent },
       { path: 'profile/organizer', component: OrganizerProfileComponent },
-      { path: 'events/:id', component: EventComponent },
+      {
+        path: 'events',
+        children: [
+          { path: 'new', component: EventFormComponent },
+          { path: 'edit/:id', component: EventFormComponent },
+          { path: ':id', component: EventComponent },
+        ],
+      },
+
       { path: 'params', component: ParamsUserComponent },
     ],
   },
-
   { path: '**', redirectTo: '' },
 ];

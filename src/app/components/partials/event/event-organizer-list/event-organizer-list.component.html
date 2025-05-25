@@ -24,12 +24,23 @@
           Lieu de l'événement:
           <span class="text-info">{{ item.location }}</span>
         </p>
-        <a
-          [routerLink]="['/dashboard/events', item._id]"
-          class="btn btn-primary"
-        >
-          Voir <i class="bi bi-search"></i>
-        </a>
+        <div class="d-flex justify-content-between mt-2">
+          <a
+            [routerLink]="['/dashboard/events', item._id]"
+            class="btn btn-primary"
+          >
+            Voir <i class="bi bi-search"></i>
+          </a>
+          <a
+            [routerLink]="['/dashboard/events/edit', item._id]"
+            class="btn btn-warning"
+            >Modifier <i class="bi bi-pencil-square"></i
+          ></a>
+          <button class="btn btn-danger" (click)="deleteEvent(item._id)">
+            Supprimer
+            <i class="bi bi-trash3-fill"></i>
+          </button>
+        </div>
       </div>
       <div
         class="card-footer d-flex justify-content-between bg-dark bg-gradient text-light"
