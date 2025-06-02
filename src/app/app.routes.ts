@@ -11,6 +11,7 @@ import { SportifProfileComponent } from './components/pages/sportif-profile/spor
 import { AdminProfileComponent } from './components/pages/admin-profile/admin-profile.component';
 import { OrganizerProfileComponent } from './components/pages/organizer-profile/organizer-profile.component';
 import { EventFormComponent } from './components/partials/event/event-form/event-form.component';
+import { UserComponent } from './components/pages/user/user.component';
 
 export const routes: Routes = [
   { path: '', canActivate: [guestGuard], component: AuthComponent },
@@ -19,6 +20,7 @@ export const routes: Routes = [
     canActivate: [authGuardGuard],
     children: [
       { path: 'home', component: HomeComponent },
+      { path: 'user/:id', component: UserComponent },
       {
         path: 'profile',
         canActivate: [RoleGuard],

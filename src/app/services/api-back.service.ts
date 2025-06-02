@@ -156,4 +156,7 @@ export class ApiBackService {
   updateUser(id: string | undefined, data: any): Observable<any> {
     return this.request('PUT', `users/${id}`, data);
   }
+  getUser(id: string): Observable<any> {
+    return this.request('GET', `users/${id}`);
+  }
 }

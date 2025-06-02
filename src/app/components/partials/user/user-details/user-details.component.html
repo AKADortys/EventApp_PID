@@ -1,0 +1,19 @@
+@if (user) {
+  <div class="alert alert-info">
+    <h1 class="display-1 text-center">
+      {{ user.name + " " + user.lastName }}
+      <span class="bg-success text-white p-2 fs-1 rounded">{{
+        user.role
+      }}</span>
+    </h1>
+    <div class="bg-dark rounded mt-2 text-white p-2">
+      <h2 class="display-4">Coordonnées</h2>
+      <p>
+        Telephone: <span class="text-warning">{{ user.phone }}</span>
+      </p>
+      <p>
+        Email: <span class="text-warning">{{ user.mail }}</span>
+      </p>
+    </div>
+  </div>
+}
