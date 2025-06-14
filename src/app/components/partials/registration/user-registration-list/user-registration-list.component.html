@@ -51,5 +51,9 @@
         Créée le : {{ item.createdAt | date: "short" }}
       </div>
     </div>
+  } @empty {
+    <div class="alert alert-info text-center">
+      <p>Vous n'êtes inscrit à aucun événement</p>
+    </div>
   }
 </div>
