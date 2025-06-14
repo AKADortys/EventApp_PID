@@ -14,7 +14,10 @@
       <h1 class="card-title text-primary">{{ event.title }}</h1>
     </div>
     <div class="card-body px-0 pb-0">
-      <p class="mx-2"><strong>Description :</strong> {{ event.description }}</p>
+      <p class="mx-2 my-3">
+        <strong>Description :</strong> {{ event.description }}
+      </p>
+      <hr />
       <p class="mx-2">
         <strong>Date :</strong> {{ event.date | date: "fullDate" }}
       </p>
@@ -25,11 +28,12 @@
       </p>
       <p class="mx-2"><strong>Type de sport :</strong> {{ event.sportType }}</p>
 
-      <div
-        *ngIf="event?.participants"
-        class="list-group col-12 col-md-6 col-lg-4"
-      >
-        <h4>Listes des participants</h4>
+      <div *ngIf="event?.participants" class="list-group col-12 mt-2">
+        <hr />
+        <h4>Listes des participants ({{ event?.participants.length }})</h4>
+        @if (event?.participants.length === 0) {
+          <p class="alert-info alert">Pas de participants</p>
+        }
         @for (item of event?.participants; track item._id) {
           <a
             class="list-group-item list-group-item-action list-group-item-primary"

@@ -10,6 +10,7 @@
   </div>
 
   <div *ngIf="registrations && registrations.length" class="row">
+    <h2 class="text-primary">Inscriptions de l'événement</h2>
     <app-pagination-controls-component
       [page]="parameters.page"
       [limit]="parameters.limit"
@@ -52,7 +53,7 @@
   </div>
 
   <div
-    *ngIf="registrations && registrations.length === 0"
+    *ngIf="(!registrations || registrations.length === 0) && !error"
     class="alert alert-info text-center"
   >
     Aucune inscription trouvée pour cet événement.
