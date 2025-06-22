@@ -1,47 +1,35 @@
 <h3 class="display-2 text-primary">Événements</h3>
-
 <app-pagination-controls-component
   [page]="parameters.page"
   [limit]="parameters.limit"
   [totalPages]="parameters.totalPages"
   [total]="parameters.total"
   (changePage)="onPageChanged($event.search, $event.page, $event.limit)"
-  class="d-flex flex-column flex-md-row align-items-center gap-1 bg-dark bg-gradient rounded p-1 text-light"
+  class="d-flex flex-column flex-md-row align-items-center gap-3 bg-secondary bg-gradient rounded p-1 text-light mb-4"
 >
 </app-pagination-controls-component>
+
 @for (item of events; track item._id) {
   <div
-    class="card col-12 col-lg-5 p-0 cartes"
+    class="col-12 col-md-6 col-lg-4 col-xl-2 cartes mb-2"
     [ngStyle]="{ animationDelay: $index * 50 + 'ms' }"
   >
-    <div class="card-header bg-dark bg-gradient">
+    <div class="mb-1">
       <h5 class="text-primary">{{ item.title }}</h5>
-      <span class="text-light">{{ item.sportType }}</span>
+      <span class="text-info">{{ item.sportType }}</span>
     </div>
-    <div class="card-body">
-      <h6>Informations</h6>
-      <p class="overflow-hidden" style="max-height: 100px">
-        {{ item.description }}
-      </p>
-      <p>
-        <span class="bg-dark border-warning border p-2 rounded text-warning">{{
-          item.maxParticipants - item.participants.length
-        }}</span>
-        place(s) restante(s)
-      </p>
+    <div>
       <p>
         Lieu de l'événement:
-        <span class="text-info">{{ item.location }}</span>
+        <span class="text-info d-block">{{ item.location }}</span>
       </p>
       <a [routerLink]="['/dashboard/events', item._id]" class="btn btn-primary">
         Voir <i class="bi bi-search"></i>
       </a>
     </div>
-    <div
-      class="card-footer d-flex justify-content-between bg-dark bg-gradient text-light"
-    >
+    <div class="d-flex justify-content-between text-primary mt-1">
       <p>
-        Date prévue: <span class="text-warning">{{ item.fDate }}</span>
+        Date prévue: <span class="text-warning d-block">{{ item.fDate }}</span>
       </p>
     </div>
   </div>
@@ -50,3 +38,21 @@
     <p>Aucuns events disponible</p>
   </div>
 }
+<div class="d-flex justify-content-center gap-3">
+  <button
+    class="btn btn-warning"
+    [disabled]="parameters.page <= 1"
+    (click)="prevPage()"
+  >
+    <i class="bi bi-arrow-left-square-fill"></i>
+    Page précédente
+  </button>
+  <button
+    class="btn btn-warning"
+    [disabled]="parameters.totalPages <= parameters.page"
+    (click)="nextPage()"
+  >
+    Page suivante
+    <i class="bi bi-arrow-right-square-fill"></i>
+  </button>
+</div>

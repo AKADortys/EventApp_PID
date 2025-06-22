@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { User } from './models/users.interface';
 import { ApiBackService } from './services/api-back.service';
 import { AuthUserService } from './services/auth-user.service';
@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   constructor(
     private readonly authUserService: AuthUserService,
     private readonly apiBackService: ApiBackService,
+    private readonly router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +34,7 @@ export class AppComponent implements OnInit {
           title: 'Déconnexion réussie !',
           text: 'Vous êtes déconnecté(e)',
         });
-        window.location.href = '/';
+        this.router.navigate(['/']);
       },
       error: (err: Error) => {
         console.error('Erreur lors de la déconnexion', err.message);

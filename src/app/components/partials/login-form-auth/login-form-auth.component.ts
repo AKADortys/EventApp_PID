@@ -44,7 +44,6 @@ export class LoginFormAuthComponent {
             text: `Vous êtes connecté(e) ${response.user.name} ${response.user.lastName}`,
           });
           this.authUserService.setUser(response.user);
-          localStorage.setItem('user', JSON.stringify(response.user));
           this.userForm.reset();
           this.router.navigate(['/dashboard/home']);
         },
