@@ -1,6 +1,6 @@
-<div class="d-flex gap-3 bg-dark p-1 rounded align-items-center">
+<div class="d-flex gap-3 bg-light p-1 rounded align-items-center">
   <button
-    class="btn btn-outline-warning"
+    class="btn btn-outline-success"
     (click)="previousPage()"
     [disabled]="page <= 1"
   >
@@ -9,14 +9,14 @@
   <span> Page {{ page }} sur {{ totalPages }} </span>
 
   <button
-    class="btn btn-outline-warning"
+    class="btn btn-outline-success"
     (click)="nextPage()"
     [disabled]="page >= totalPages"
   >
     <i class="bi bi-arrow-right-square-fill"></i>
   </button>
 </div>
-<div class="bg-dark rounded p-1 d-flex align-items-center gap-1">
+<div class="bg-light rounded p-1 d-flex align-items-center gap-1">
   <label for="search"> <i class="bi bi-search"></i> </label>
   <input
     type="text"
@@ -26,7 +26,7 @@
     placeholder="Recherche..."
     id="search"
   />
-  <label class="bg-dark rounded p-1" for="limit">
+  <label class="bg-light rounded p-1" for="limit">
     <i class="bi bi-card-list"></i>
   </label>
   Limit cartes
@@ -41,7 +41,7 @@
     <option [value]="48">48</option>
   </select>
 </div>
-<div>
+<div class="bg-light rounded p-1">
   <p class="my-1">
     <span class="text-warning">{{ total }}</span> élément(s)
   </p>

@@ -13,11 +13,11 @@ import { ApiBackService } from '../../../../services/api-back.service';
 import Swal from 'sweetalert2';
 import { User, UserRegist } from '../../../../models/users.interface';
 import { AuthUserService } from '../../../../services/auth-user.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user-updt-form',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './user-updt-form.component.html',
   styleUrl: './user-updt-form.component.scss',
 })
@@ -84,7 +84,7 @@ export class UserUpdtFormComponent {
             text: 'Votre compte a été modifié.',
           });
           this.authService.setUser(response.user);
-          this.router.navigate(['/dashboard/home']);
+          this.router.navigate(['/dashboard/profile']);
         },
         error: (err: Error) => {
           Swal.fire({

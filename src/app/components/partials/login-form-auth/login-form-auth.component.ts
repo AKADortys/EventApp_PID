@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ApiBackService } from '../../../services/api-back.service';
 import { AuthUserService } from '../../../services/auth-user.service';
@@ -13,7 +13,7 @@ import {
 
 @Component({
   selector: 'app-login-form-auth',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login-form-auth.component.html',
   styleUrl: './login-form-auth.component.scss',
 })

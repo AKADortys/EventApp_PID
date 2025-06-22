@@ -12,7 +12,7 @@
   (changePage)="
     getRegistrations(userId, $event.page, $event.limit, $event.search)
   "
-  class="d-flex flex-column flex-md-row align-items-center gap-1 bg-dark bg-gradient rounded p-1 text-light"
+  class="d-flex flex-column flex-md-row align-items-center gap-1 rounded p-1 text-dark mb-4"
 ></app-pagination-controls-component>
 <div class="row">
   @for (item of registrations; track item._id) {
@@ -52,7 +52,7 @@
       </div>
     </div>
   } @empty {
-    <div class="alert alert-info text-center">
+    <div class="alert alert-info text-center py-5">
       <p>Vous n'êtes inscrit à aucun événement</p>
     </div>
   }

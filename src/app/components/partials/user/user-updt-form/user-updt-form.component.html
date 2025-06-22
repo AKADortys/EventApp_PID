@@ -1,78 +1,97 @@
 <form
   [formGroup]="form"
-  class="row justify-content-center py-2 px-1 needs-validation border rounded shadow-lg m-4 bg-dark bg-gradient text-white"
+  class="row g-3 justify-content-center p-4 border rounded shadow-lg m-4 bg-body text-body w-75 mx-auto my-5"
   (ngSubmit)="submit()"
   novalidate
 >
-  <div class="d-flex flex-wrap col-12 col-md-6 my-2">
-    <label for="name" class="w-100">Prénom</label>
-    <input
-      type="text"
-      class="form-control"
-      [ngClass]="{
-        'is-invalid': form.get('name')?.invalid && form.get('name')?.touched,
-        'is-valid': form.get('name')?.valid && form.get('name')?.touched,
-      }"
-      formControlName="name"
-    />
+  <!-- Prénom -->
+  <div class="col-12 col-md-6">
+    <label for="name" class="form-label">Prénom</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="bi bi-person"></i></span>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid': form.get('name')?.invalid && form.get('name')?.touched,
+          'is-valid': form.get('name')?.valid && form.get('name')?.touched,
+        }"
+        formControlName="name"
+      />
+    </div>
     <div class="invalid-feedback">
       Le prénom est requis (min. 3 caractères).
     </div>
   </div>
 
-  <div class="d-flex flex-wrap col-12 col-md-6 my-2">
-    <label for="lastName" class="w-100">Nom</label>
-    <input
-      type="text"
-      class="form-control"
-      [ngClass]="{
-        'is-invalid':
-          form.get('lastName')?.invalid && form.get('lastName')?.touched,
-        'is-valid':
-          form.get('lastName')?.valid && form.get('lastName')?.touched,
-      }"
-      formControlName="lastName"
-    />
+  <!-- Nom -->
+  <div class="col-12 col-md-6">
+    <label for="lastName" class="form-label">Nom</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+      <input
+        type="text"
+        id="lastName"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            form.get('lastName')?.invalid && form.get('lastName')?.touched,
+          'is-valid':
+            form.get('lastName')?.valid && form.get('lastName')?.touched,
+        }"
+        formControlName="lastName"
+      />
+    </div>
     <div class="invalid-feedback">Le nom est requis (min. 3 caractères).</div>
   </div>
 
-  <div class="d-flex flex-wrap col-12 col-md-6 my-2">
-    <label for="password" class="w-100">Mot de passe</label>
-    <input
-      type="password"
-      class="form-control"
-      [ngClass]="{
-        'is-invalid':
-          form.get('password')?.invalid && form.get('password')?.touched,
-        'is-valid':
-          form.get('password')?.valid && form.get('password')?.touched,
-      }"
-      formControlName="password"
-    />
+  <!-- Mot de passe -->
+  <div class="col-12 col-md-6">
+    <label for="password" class="form-label">Mot de passe</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="bi bi-lock"></i></span>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            form.get('password')?.invalid && form.get('password')?.touched,
+          'is-valid':
+            form.get('password')?.valid && form.get('password')?.touched,
+        }"
+        formControlName="password"
+      />
+    </div>
     <div class="invalid-feedback">
       Le mot de passe doit contenir 8 caractères, dont 1 majuscule et 1 chiffre.
     </div>
   </div>
 
-  <div class="d-flex flex-wrap col-12 col-md-6 my-2">
-    <label for="cPassword" class="w-100">Confirmation mot de passe</label>
-    <input
-      type="password"
-      class="form-control"
-      [ngClass]="{
-        'is-invalid':
-          form.get('cPassword')?.invalid && form.get('cPassword')?.touched,
-        'is-valid':
-          form.get('cPassword')?.valid && form.get('cPassword')?.touched,
-      }"
-      formControlName="cPassword"
-    />
+  <!-- Confirmation mot de passe -->
+  <div class="col-12 col-md-6">
+    <label for="cPassword" class="form-label">Confirmation mot de passe</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="bi bi-shield-lock"></i></span>
+      <input
+        type="password"
+        id="cPassword"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            form.get('cPassword')?.invalid && form.get('cPassword')?.touched,
+          'is-valid':
+            form.get('cPassword')?.valid && form.get('cPassword')?.touched,
+        }"
+        formControlName="cPassword"
+      />
+    </div>
     <div class="invalid-feedback">
       La confirmation doit respecter le même format que le mot de passe.
     </div>
-
     <div
-      class="text-danger mt-1"
+      class="text-danger small mt-1"
       *ngIf="
         form.errors?.['passwordsMismatch'] &&
         (form.get('cPassword')?.touched || form.get('password')?.touched)
@@ -82,42 +101,52 @@
     </div>
   </div>
 
-  <div class="d-flex flex-wrap col-12 col-md-6 my-2">
-    <label for="phone" class="w-100">Numéro de téléphone</label>
-    <input
-      type="tel"
-      class="form-control"
-      [ngClass]="{
-        'is-invalid': form.get('phone')?.invalid && form.get('phone')?.touched,
-        'is-valid': form.get('phone')?.valid && form.get('phone')?.touched,
-      }"
-      formControlName="phone"
-    />
+  <!-- Téléphone -->
+  <div class="col-12 col-md-6">
+    <label for="phone" class="form-label">Numéro de téléphone</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+      <input
+        type="tel"
+        id="phone"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            form.get('phone')?.invalid && form.get('phone')?.touched,
+          'is-valid': form.get('phone')?.valid && form.get('phone')?.touched,
+        }"
+        formControlName="phone"
+      />
+    </div>
     <div class="invalid-feedback">
       Numéro de téléphone invalide (format FR requis).
     </div>
   </div>
 
-  <div class="d-flex flex-wrap col-12 col-md-6 my-2">
-    <label for="email" class="w-100">Adresse email</label>
-    <input
-      type="email"
-      class="form-control"
-      [ngClass]="{
-        'is-invalid': form.get('mail')?.invalid && form.get('mail')?.touched,
-        'is-valid': form.get('mail')?.valid && form.get('mail')?.touched,
-      }"
-      formControlName="mail"
-    />
+  <!-- Email -->
+  <div class="col-12 col-md-6">
+    <label for="email" class="form-label">Adresse email</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid': form.get('mail')?.invalid && form.get('mail')?.touched,
+          'is-valid': form.get('mail')?.valid && form.get('mail')?.touched,
+        }"
+        formControlName="mail"
+      />
+    </div>
     <div class="invalid-feedback">Adresse email invalide.</div>
   </div>
 
-  <div class="d-flex gap-3 col-10">
-    <input
-      type="submit"
-      value="Modifier"
-      class="btn btn-primary"
-      [disabled]="!form.valid"
-    />
+  <!-- Bouton submit -->
+  <div class="col-12 d-flex gap-5">
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+      <i class="bi bi-save me-1"></i> Modifier
+    </button>
+    <a routerLink="/dashboard/profile" class="btn btn-primary">Retour</a>
   </div>
 </form>

@@ -1,166 +1,198 @@
-<form
-  [formGroup]="userForm"
-  class="row justify-content-center py-2 px-1 needs-validation border rounded shadow-lg m-4 bg-dark bg-gradient text-white"
-  (ngSubmit)="submit()"
-  novalidate
+<div
+  class="container d-flex justify-content-center align-items-center py-5 cartes"
 >
-  <div class="d-flex flex-wrap col-12 col-md-6 my-2">
-    <label for="name" class="w-100">Prénom</label>
-    <input
-      type="text"
-      class="form-control"
-      [ngClass]="{
-        'is-invalid':
-          userForm.get('name')?.invalid && userForm.get('name')?.touched,
-        'is-valid':
-          userForm.get('name')?.valid && userForm.get('name')?.touched,
-      }"
-      formControlName="name"
-    />
-    <div class="invalid-feedback">
-      Le prénom est requis (min. 3 caractères).
-    </div>
-  </div>
+  <form
+    [formGroup]="userForm"
+    class="card p-4 shadow-lg w-100"
+    style="max-width: 700px"
+    (ngSubmit)="submit()"
+    novalidate
+  >
+    <h3 class="text-center mb-4 display-5">Créer un compte</h3>
 
-  <div class="d-flex flex-wrap col-12 col-md-6 my-2">
-    <label for="lastName" class="w-100">Nom</label>
-    <input
-      type="text"
-      class="form-control"
-      [ngClass]="{
-        'is-invalid':
-          userForm.get('lastName')?.invalid &&
-          userForm.get('lastName')?.touched,
-        'is-valid':
-          userForm.get('lastName')?.valid && userForm.get('lastName')?.touched,
-      }"
-      formControlName="lastName"
-    />
-    <div class="invalid-feedback">Le nom est requis (min. 3 caractères).</div>
-  </div>
-
-  <div class="d-flex flex-wrap col-12 col-md-6 my-2">
-    <label for="password" class="w-100">Mot de passe</label>
-    <input
-      type="password"
-      class="form-control"
-      [ngClass]="{
-        'is-invalid':
-          userForm.get('password')?.invalid &&
-          userForm.get('password')?.touched,
-        'is-valid':
-          userForm.get('password')?.valid && userForm.get('password')?.touched,
-      }"
-      formControlName="password"
-    />
-    <div class="invalid-feedback">
-      Le mot de passe doit contenir 8 caractères, dont 1 majuscule et 1 chiffre.
-    </div>
-  </div>
-
-  <div class="d-flex flex-wrap col-12 col-md-6 my-2">
-    <label for="cPassword" class="w-100">Confirmation mot de passe</label>
-    <input
-      type="password"
-      class="form-control"
-      [ngClass]="{
-        'is-invalid':
-          userForm.get('cPassword')?.invalid &&
-          userForm.get('cPassword')?.touched,
-        'is-valid':
-          userForm.get('cPassword')?.valid &&
-          userForm.get('cPassword')?.touched,
-      }"
-      formControlName="cPassword"
-    />
-    <div class="invalid-feedback">
-      La confirmation doit respecter le même format que le mot de passe.
+    <div class="mb-3">
+      <label class="form-label">Prénom</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-person"></i></span>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="name"
+          [ngClass]="{
+            'is-invalid':
+              userForm.get('name')?.invalid && userForm.get('name')?.touched,
+            'is-valid':
+              userForm.get('name')?.valid && userForm.get('name')?.touched,
+          }"
+        />
+        <div class="invalid-feedback">
+          Le prénom est requis (min. 3 caractères).
+        </div>
+      </div>
     </div>
 
-    <div
-      class="text-danger mt-1"
-      *ngIf="
-        userForm.errors?.['passwordsMismatch'] &&
-        (userForm.get('cPassword')?.touched ||
-          userForm.get('password')?.touched)
-      "
-    >
-      Les mots de passe ne correspondent pas.
+    <div class="mb-3">
+      <label class="form-label">Nom</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="lastName"
+          [ngClass]="{
+            'is-invalid':
+              userForm.get('lastName')?.invalid &&
+              userForm.get('lastName')?.touched,
+            'is-valid':
+              userForm.get('lastName')?.valid &&
+              userForm.get('lastName')?.touched,
+          }"
+        />
+        <div class="invalid-feedback">
+          Le nom est requis (min. 3 caractères).
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="d-flex flex-wrap col-12 col-md-6 my-2">
-    <label for="phone" class="w-100">Numéro de téléphone</label>
-    <input
-      type="tel"
-      class="form-control"
-      [ngClass]="{
-        'is-invalid':
-          userForm.get('phone')?.invalid && userForm.get('phone')?.touched,
-        'is-valid':
-          userForm.get('phone')?.valid && userForm.get('phone')?.touched,
-      }"
-      formControlName="phone"
-    />
-    <div class="invalid-feedback">
-      Numéro de téléphone invalide (format FR requis).
+    <div class="mb-3">
+      <label class="form-label">Mot de passe</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          [ngClass]="{
+            'is-invalid':
+              userForm.get('password')?.invalid &&
+              userForm.get('password')?.touched,
+            'is-valid':
+              userForm.get('password')?.valid &&
+              userForm.get('password')?.touched,
+          }"
+        />
+        <div class="invalid-feedback">
+          Le mot de passe doit contenir 8 caractères, dont 1 majuscule et 1
+          chiffre.
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="d-flex flex-wrap col-12 col-md-6 my-2">
-    <label for="email" class="w-100">Adresse email</label>
-    <input
-      type="email"
-      class="form-control"
-      [ngClass]="{
-        'is-invalid':
-          userForm.get('mail')?.invalid && userForm.get('mail')?.touched,
-        'is-valid':
-          userForm.get('mail')?.valid && userForm.get('mail')?.touched,
-      }"
-      formControlName="mail"
-    />
-    <div class="invalid-feedback">Adresse email invalide.</div>
-  </div>
-
-  <!-- Choix utilisateur -->
-  <div class="d-flex gap-3 flex-wrap col-12 col-md-6 my-2">
-    <h4 class="w-100">Que voulez-vous être sur ce site ?</h4>
-    <div class="form-check">
-      <input
-        type="radio"
-        value="sportif"
-        class="form-check-input"
-        name="role"
-        formControlName="role"
-      />
-      <label for="sportif" class="form-check-label">Sportif</label>
-    </div>
-    <div class="form-check">
-      <input
-        type="radio"
-        value="organisateur"
-        class="form-check-input"
-        name="role"
-        formControlName="role"
-      />
-      <label for="organisateur" class="form-check-label">Organisateur</label>
+    <div class="mb-3">
+      <label class="form-label">Confirmation du mot de passe</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="cPassword"
+          [ngClass]="{
+            'is-invalid':
+              userForm.get('cPassword')?.invalid &&
+              userForm.get('cPassword')?.touched,
+            'is-valid':
+              userForm.get('cPassword')?.valid &&
+              userForm.get('cPassword')?.touched,
+          }"
+        />
+        <div class="invalid-feedback">
+          La confirmation doit respecter le même format que le mot de passe.
+        </div>
+      </div>
       <div
+        class="text-danger mt-1"
+        *ngIf="
+          userForm.errors?.['passwordsMismatch'] &&
+          (userForm.get('cPassword')?.touched ||
+            userForm.get('password')?.touched)
+        "
+      >
+        Les mots de passe ne correspondent pas.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Numéro de téléphone</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+        <input
+          type="tel"
+          class="form-control"
+          formControlName="phone"
+          [ngClass]="{
+            'is-invalid':
+              userForm.get('phone')?.invalid && userForm.get('phone')?.touched,
+            'is-valid':
+              userForm.get('phone')?.valid && userForm.get('phone')?.touched,
+          }"
+        />
+        <div class="invalid-feedback">
+          Numéro de téléphone invalide (format FR requis).
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Adresse email</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-envelope-at"></i></span>
+        <input
+          type="email"
+          class="form-control"
+          formControlName="mail"
+          [ngClass]="{
+            'is-invalid':
+              userForm.get('mail')?.invalid && userForm.get('mail')?.touched,
+            'is-valid':
+              userForm.get('mail')?.valid && userForm.get('mail')?.touched,
+          }"
+        />
+        <div class="invalid-feedback">Adresse email invalide.</div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label d-block">Votre rôle sur le site</label>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="sportif"
+          formControlName="role"
+        />
+        <label class="form-check-label">Sportif</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="organisateur"
+          formControlName="role"
+        />
+        <label class="form-check-label">Organisateur</label>
+      </div>
+      <div
+        class="text-danger mt-1"
         *ngIf="userForm.get('role')?.touched && userForm.get('role')?.invalid"
-        class="text-danger"
       >
         Vous devez choisir un rôle.
       </div>
     </div>
-  </div>
 
-  <div class="d-flex gap-3 col-10">
-    <input
-      type="submit"
-      value="S'inscrire"
-      class="btn btn-primary"
-      [disabled]="!userForm.valid"
-    />
-    <input type="reset" value="Réinitialiser" class="btn btn-outline-danger" />
-  </div>
-</form>
+    <div class="d-flex justify-content-between">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!userForm.valid"
+      >
+        <i class="bi bi-check-circle me-1"></i>S'inscrire
+      </button>
+      <button type="reset" class="btn btn-outline-danger">
+        <i class="bi bi-arrow-counterclockwise me-1"></i>Réinitialiser
+      </button>
+      <a routerLink="/" class="btn btn-outline-primary"
+        >Déjà Inscrit ? Connectez-vous</a
+      >
+    </div>
+  </form>
+</div>

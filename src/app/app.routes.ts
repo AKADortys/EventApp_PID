@@ -12,9 +12,15 @@ import { AdminProfileComponent } from './components/pages/admin-profile/admin-pr
 import { OrganizerProfileComponent } from './components/pages/organizer-profile/organizer-profile.component';
 import { EventFormComponent } from './components/partials/event/event-form/event-form.component';
 import { UserComponent } from './components/pages/user/user.component';
+import { RegisterFormAthComponent } from './components/partials/register-form-ath/register-form-ath.component';
 
 export const routes: Routes = [
   { path: '', canActivate: [guestGuard], component: AuthComponent },
+  {
+    path: 'register',
+    canActivate: [guestGuard],
+    component: RegisterFormAthComponent,
+  },
   {
     path: 'dashboard',
     canActivate: [authGuardGuard],

@@ -11,10 +11,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { UserRegist, User } from '../../../models/users.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register-form-ath',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './register-form-ath.component.html',
   styleUrl: './register-form-ath.component.scss',
 })

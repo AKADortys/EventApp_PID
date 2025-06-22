@@ -5,7 +5,7 @@
   [totalPages]="parameters.totalPages"
   [total]="parameters.total"
   (changePage)="onPageChanged($event.search, $event.page, $event.limit)"
-  class="d-flex flex-column flex-md-row align-items-center gap-1 bg-dark bg-gradient rounded p-1 text-light"
+  class="d-flex flex-column flex-md-row align-items-center gap-1 rounded p-1 text-dark mb-4"
 >
 </app-pagination-controls-component>
 <div class="d-flex flex-wrap">
@@ -52,8 +52,15 @@
       </div>
     </div>
   } @empty {
-    <div class="alert alert-info">
-      <p>Aucuns events disponible</p>
+    <div class="alert alert-info w-100 text-center py-5">
+      <p>Vous n'avez pas créer d'événements</p>
+      <a
+        routerLink="/dashboard/events/new"
+        class="list-group-item list-group-item-action list-group-item-success w-50 mx-auto"
+      >
+        <i class="bi bi-plus-square-fill"></i>
+        Créer un événement
+      </a>
     </div>
   }
 </div>

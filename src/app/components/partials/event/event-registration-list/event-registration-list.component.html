@@ -17,7 +17,7 @@
       [totalPages]="parameters.totalPages"
       [total]="parameters.total"
       (changePage)="pageChanged($event.page, $event.limit, $event.search)"
-      class="d-flex flex-column flex-md-row align-items-center gap-1 bg-dark bg-gradient rounded p-1 text-light"
+      class="d-flex flex-column flex-md-row align-items-center gap-1 rounded p-1 text-dark mb-4"
     >
     </app-pagination-controls-component>
     <div class="col-md-6 mb-4" *ngFor="let registration of registrations">
@@ -54,7 +54,7 @@
 
   <div
     *ngIf="(!registrations || registrations.length === 0) && !error"
-    class="alert alert-info text-center"
+    class="alert alert-info text-center py-5"
   >
     Aucune inscription trouvée pour cet événement.
   </div>
