@@ -98,4 +98,17 @@ export class EventOrganizerListComponent implements OnInit {
       }
     });
   }
+
+  nextPage(): void {
+    if (this.parameters.totalPages <= this.parameters.page) return;
+    this.parameters.page++;
+    this.getEvents('', this.parameters.page, this.parameters.limit);
+    return;
+  }
+
+  prevPage(): void {
+    if (this.parameters.page <= 0) return;
+    this.parameters.page--;
+    this.getEvents('', this.parameters.page, this.parameters.limit);
+  }
 }

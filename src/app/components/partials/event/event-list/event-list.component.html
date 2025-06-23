@@ -11,7 +11,7 @@
 
 @for (item of events; track item._id) {
   <div
-    class="col-12 col-md-6 col-lg-4 col-xl-3 cartes mb-4 shadow-sm border border-light"
+    class="col-12 col-md-6 col-lg-3 cartes mb-4 shadow-sm border border-light"
     [ngStyle]="{ animationDelay: $index * 50 + 'ms' }"
   >
     <div class="mb-1">
@@ -40,7 +40,7 @@
 }
 <div class="d-flex justify-content-center gap-3">
   <button
-    class="btn btn-warning"
+    class="btn btn-success"
     [disabled]="parameters.page <= 1"
     (click)="prevPage()"
   >
@@ -48,7 +48,7 @@
     Page précédente
   </button>
   <button
-    class="btn btn-warning"
+    class="btn btn-success"
     [disabled]="parameters.totalPages <= parameters.page"
     (click)="nextPage()"
   >

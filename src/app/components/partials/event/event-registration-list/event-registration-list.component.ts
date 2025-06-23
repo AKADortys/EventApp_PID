@@ -39,7 +39,6 @@ export class EventRegistrationListComponent implements OnInit {
         next: (response) => {
           this.isLoading = true;
           const { data, ...rest } = response;
-          console.log(rest);
           this.registrations = data;
           this.parameters = rest;
         },
@@ -51,5 +50,18 @@ export class EventRegistrationListComponent implements OnInit {
           this.isLoading = false;
         },
       });
+  }
+  nextPage(): void {
+    if (this.parameters.totalPages <= this.parameters.page) return;
+    this.parameters.page++;
+    this.getRegistration(this.parameters.page, this.parameters.limit, '');
+    return;
+  }
+
+  prevPage(): void {
+    if (this.parameters.page <= 0) return;
+    this.parameters.page--;
+    this.getRegistration(this.parameters.page, this.parameters.limit, '');
+    return;
   }
 }
