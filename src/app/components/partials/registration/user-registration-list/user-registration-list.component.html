@@ -16,49 +16,49 @@
 ></app-pagination-controls-component>
 <div class="row">
   @for (item of registrations; track item._id) {
-    <div class="card shadow-sm border col-12 col-xl-6 my-1 p-0 cartes">
-      <div class="card-header bg-dark bg-gradient text-white">
-        <h5 class="card-title mb-0">
-          {{ item.event.title }} -
-          {{ item.event.sportType | titlecase }}
-        </h5>
-      </div>
-      <div class="card-body">
-        <p><strong>Lieu :</strong> {{ item.event.location }}</p>
-        <p>
-          <strong>Date :</strong>
-          {{ item.event.date | date: "medium" }}
-        </p>
-        <hr />
-        <p>
-          <strong>Participant :</strong> {{ item.user.name }}
-          {{ item.user.lastName }}
-        </p>
-        <p><strong>Email :</strong> {{ item.user.mail }}</p>
-        <a
-          [routerLink]="['/dashboard/events', item.event._id]"
-          class="btn btn-primary mb-2"
-        >
-          Voir plus
-          <i class="bi bi-search"></i
-        ></a>
-        <p>
-          <span class="badge bg-success me-1">{{ item.status }}</span>
-          <span class="badge bg-info">{{ item.paymentStatus }}</span>
-        </p>
-      </div>
-      <div class="card-footer text-light small bg-dark bg-gradient">
-        Créée le : {{ item.createdAt | date: "short" }}
-      </div>
+  <div class="card shadow-sm border col-12 col-xl-6 my-1 p-0 cartes">
+    <div class="card-header bg-dark bg-gradient text-white">
+      <h5 class="card-title mb-0">
+        {{ item.event.title }} -
+        {{ item.event.sportType | titlecase }}
+      </h5>
     </div>
+    <div class="card-body">
+      <p><strong>Lieu :</strong> {{ item.event.location }}</p>
+      <p>
+        <strong>Date :</strong>
+        {{ item.event.date | date : "medium" }}
+      </p>
+      <hr />
+      <p>
+        <strong>Participant :</strong> {{ item.user.name }}
+        {{ item.user.lastName }}
+      </p>
+      <p><strong>Email :</strong> {{ item.user.mail }}</p>
+      <a
+        [routerLink]="['/dashboard/events', item.event._id]"
+        class="btn btn-primary mb-2"
+      >
+        Voir plus
+        <i class="bi bi-search"></i
+      ></a>
+      <p>
+        <span class="badge bg-success me-1">{{ item.status }}</span>
+        <span class="badge bg-info">{{ item.paymentStatus }}</span>
+      </p>
+    </div>
+    <div class="card-footer text-light small bg-dark bg-gradient">
+      Créée le : {{ item.createdAt | date : "short" }}
+    </div>
+  </div>
   } @empty {
-    <div class="alert alert-info text-center py-5">
-      <p>Vous n'êtes inscrit à aucun événement</p>
-    </div>
+  <div class="alert alert-info text-center py-5">
+    <p>Vous n'êtes inscrit à aucun événement</p>
+  </div>
   }
   <div class="d-flex justify-content-center gap-3">
     <button
-      class="btn btn-success"
+      class="btn btn-primary"
       [disabled]="parameters.page <= 1"
       (click)="prevPage()"
     >
@@ -66,7 +66,7 @@
       Page précédente
     </button>
     <button
-      class="btn btn-success"
+      class="btn btn-primary"
       [disabled]="parameters.totalPages <= parameters.page"
       (click)="nextPage()"
     >

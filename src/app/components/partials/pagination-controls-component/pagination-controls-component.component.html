@@ -1,6 +1,6 @@
 <div class="d-flex gap-3 bg-light p-1 rounded align-items-center">
   <button
-    class="btn btn-outline-success"
+    class="btn btn-outline-primary"
     (click)="previousPage()"
     [disabled]="page <= 1"
   >
@@ -9,7 +9,7 @@
   <span> Page {{ page }} sur {{ totalPages }} </span>
 
   <button
-    class="btn btn-outline-success"
+    class="btn btn-outline-primary"
     (click)="nextPage()"
     [disabled]="page >= totalPages"
   >

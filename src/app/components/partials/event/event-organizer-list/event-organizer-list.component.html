@@ -10,61 +10,61 @@
 </app-pagination-controls-component>
 <div class="d-flex flex-wrap">
   @for (item of events; track item._id) {
+  <div
+    class="card col-6 col-xl-4 p-0 cartes"
+    [ngStyle]="{ animationDelay: $index * 100 + 'ms' }"
+  >
+    <div class="card-header bg-dark bg-gradient">
+      <h5 class="text-primary">{{ item.title }}</h5>
+      <span class="text-light">{{ item.sportType }}</span>
+    </div>
+    <div class="card-body">
+      <p>
+        Lieu de l'événement:
+        <span class="text-info">{{ item.location }}</span>
+      </p>
+      <div class="d-flex justify-content-between mt-2">
+        <a
+          [routerLink]="['/dashboard/events', item._id]"
+          class="btn btn-primary"
+        >
+          Voir <i class="bi bi-search"></i>
+        </a>
+        <a
+          [routerLink]="['/dashboard/events/edit', item._id]"
+          class="btn btn-warning"
+          >Modifier <i class="bi bi-pencil-square"></i
+        ></a>
+        <button class="btn btn-danger" (click)="deleteEvent(item._id)">
+          Supprimer
+          <i class="bi bi-trash3-fill"></i>
+        </button>
+      </div>
+    </div>
     <div
-      class="card col-6 col-xl-4 p-0 cartes"
-      [ngStyle]="{ animationDelay: $index * 100 + 'ms' }"
+      class="card-footer d-flex justify-content-between bg-dark bg-gradient text-light"
     >
-      <div class="card-header bg-dark bg-gradient">
-        <h5 class="text-primary">{{ item.title }}</h5>
-        <span class="text-light">{{ item.sportType }}</span>
-      </div>
-      <div class="card-body">
-        <p>
-          Lieu de l'événement:
-          <span class="text-info">{{ item.location }}</span>
-        </p>
-        <div class="d-flex justify-content-between mt-2">
-          <a
-            [routerLink]="['/dashboard/events', item._id]"
-            class="btn btn-primary"
-          >
-            Voir <i class="bi bi-search"></i>
-          </a>
-          <a
-            [routerLink]="['/dashboard/events/edit', item._id]"
-            class="btn btn-warning"
-            >Modifier <i class="bi bi-pencil-square"></i
-          ></a>
-          <button class="btn btn-danger" (click)="deleteEvent(item._id)">
-            Supprimer
-            <i class="bi bi-trash3-fill"></i>
-          </button>
-        </div>
-      </div>
-      <div
-        class="card-footer d-flex justify-content-between bg-dark bg-gradient text-light"
-      >
-        <p>
-          Date prévue: <span class="text-warning">{{ item.fDate }}</span>
-        </p>
-      </div>
+      <p>
+        Date prévue: <span class="text-warning">{{ item.fDate }}</span>
+      </p>
     </div>
+  </div>
   } @empty {
-    <div class="alert alert-info w-100 text-center py-5">
-      <p>Vous n'avez pas créer d'événements</p>
-      <a
-        routerLink="/dashboard/events/new"
-        class="list-group-item list-group-item-action list-group-item-success w-50 mx-auto"
-      >
-        <i class="bi bi-plus-square-fill"></i>
-        Créer un événement
-      </a>
-    </div>
+  <div class="alert alert-info w-100 text-center py-5">
+    <p>Vous n'avez pas créer d'événements</p>
+    <a
+      routerLink="/dashboard/events/new"
+      class="list-group-item list-group-item-action list-group-item-success w-50 mx-auto"
+    >
+      <i class="bi bi-plus-square-fill"></i>
+      Créer un événement
+    </a>
+  </div>
   }
 </div>
 <div class="d-flex justify-content-center gap-3">
   <button
-    class="btn btn-success"
+    class="btn btn-primary"
     [disabled]="parameters.page <= 1"
     (click)="prevPage()"
   >
@@ -72,7 +72,7 @@
     Page précédente
   </button>
   <button
-    class="btn btn-success"
+    class="btn btn-primary"
     [disabled]="parameters.totalPages <= parameters.page"
     (click)="nextPage()"
   >

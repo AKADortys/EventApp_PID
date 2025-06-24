@@ -1,72 +1,106 @@
-<div *ngIf="isLoading" class="text-center">
-  <div class="spinner-border text-primary" role="status">
+<!-- Spinner de chargement -->
+<div *ngIf="isLoading" class="text-center my-5">
+  <div class="spinner-border text-dark" role="status">
     <span class="visually-hidden">Chargement...</span>
   </div>
 </div>
 
+<!-- Message d'erreur -->
 <div *ngIf="error" class="alert alert-danger text-center">
-  {{ error }}
+  <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ error }}
 </div>
 
-<div *ngIf="event" class="container">
-  <div class="card shadow-sm">
-    <div class="card-header bg-dark bg-gradient">
-      <h1 class="card-title text-primary">{{ event.title }}</h1>
+<!-- Carte de l'événement -->
+<div *ngIf="event" class="container my-4">
+  <div class="card border-0 shadow-lg bg-light">
+    <div
+      class="card-header bg-dark text-light d-flex justify-content-between align-items-center"
+    >
+      <h2 class="mb-0">
+        <i class="bi bi-calendar-event me-2"></i>{{ event.title }}
+      </h2>
     </div>
-    <div class="card-body px-0 pb-0">
-      <p class="mx-2 my-3">
+
+    <div class="card-body">
+      <p>
+        <i class="bi bi-info-circle me-2 text-dark"></i>
         <strong>Description :</strong> {{ event.description }}
       </p>
-      <hr />
-      <p class="mx-2">
-        <strong>Date :</strong> {{ event.date | date: "fullDate" }}
+      <p>
+        <i class="bi bi-clock me-2 text-dark"></i>
+        <strong>Date :</strong> {{ event.date | date : "fullDate" }}
       </p>
-      <p class="mx-2"><strong>Lieu :</strong> {{ event.location }}</p>
-      <p class="mx-2">
-        <strong>Nombre max de participants :</strong>
-        {{ event.maxParticipants }}
+      <p>
+        <i class="bi bi-geo-alt me-2 text-dark"></i>
+        <strong>Lieu :</strong> {{ event.location }}
       </p>
-      <p class="mx-2"><strong>Type de sport :</strong> {{ event.sportType }}</p>
+      <p>
+        <i class="bi bi-people me-2 text-dark"></i>
+        <strong>Participants max :</strong> {{ event.maxParticipants }}
+      </p>
+      <p>
+        <i class="bi bi-trophy me-2 text-dark"></i>
+        <strong>Sport :</strong> {{ event.sportType }}
+      </p>
 
-      <div *ngIf="event?.participants" class="list-group col-12 mt-2">
-        <hr />
-        <h4>Listes des participants ({{ event?.participants.length }})</h4>
+      <!-- Liste des participants -->
+      <div *ngIf="event?.participants" class="mt-4">
+        <h5>
+          <i class="bi bi-person-lines-fill me-2"></i>Participants ({{
+            event?.participants.length
+          }})
+        </h5>
         @if (event?.participants.length === 0) {
-          <p class="alert-info alert">Pas de participants</p>
-        }
-        @for (item of event?.participants; track item._id) {
-          <a
-            class="list-group-item list-group-item-action list-group-item-primary"
-            [routerLink]="['/dashboard/user/', item._id]"
-          >
-            {{ item.name + " " + item.lastName + " - " + item.mail }}
-          </a>
+        <div class="alert alert-info mt-2">
+          Aucun participant pour le moment.
+        </div>
+        } @for (item of event?.participants; track item._id) {
+        <a
+          class="list-group-item list-group-item-action border-0 ps-0"
+          [routerLink]="['/dashboard/user/', item._id]"
+        >
+          <i class="bi bi-person-circle me-2 text-primary"></i>
+          {{ item.name }} {{ item.lastName }} - {{ item.mail }}
+        </a>
         }
       </div>
 
+      <!-- Formulaire d'inscription -->
       <app-registration-form
-        [eventId]="eventId"
-        [userId]="userId"
-        [isRegister]="isResgister"
         *ngIf="
           role === 'sportif' &&
           event.maxParticipants > event.participants.length
         "
+        [eventId]="eventId"
+        [userId]="userId"
+        [isRegister]="isResgister"
+        class="mt-4"
       ></app-registration-form>
+    </div>
 
-      <div
-        *ngIf="event.organizer"
-        class="bg-dark bg-gradient card-footer d-flex flex-column flex-md-row justify-content-center gap-3"
-      >
-        <p class="text-primary">Organisateur</p>
-        <p class="p-0 text-light">
-          {{ event.organizer.name + " " + event.organizer.lastName }}
-        </p>
-        <p>
-          <a href="mailto:{{ event.organizer.mail }}">{{
-            event.organizer.mail
-          }}</a>
-        </p>
+    <!-- Footer : organisateur -->
+    <div
+      *ngIf="event.organizer"
+      class="card-footer bg-dark text-light d-flex flex-column flex-md-row gap-3 align-items-center"
+    >
+      <div>
+        <i class="bi bi-person-badge me-2"></i>
+        <strong>Organisateur :</strong>
+        <a
+          [routerLink]="['/dashboard/user/', event.organizer._id]"
+          class="text-primary text-decoration-underline"
+        >
+          {{ event.organizer.name }} {{ event.organizer.lastName }}
+        </a>
+      </div>
+      <div>
+        <i class="bi bi-envelope me-2"></i>
+        <a
+          [href]="'mailto:' + event.organizer.mail"
+          class="text-primary text-decoration-underline"
+        >
+          {{ event.organizer.mail }}
+        </a>
       </div>
     </div>
   </div>

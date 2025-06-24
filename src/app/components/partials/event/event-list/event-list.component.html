@@ -10,37 +10,49 @@
 </app-pagination-controls-component>
 
 @for (item of events; track item._id) {
+<div
+  class="col-12 col-md-5 col-xl-3 mb-4"
+  [ngStyle]="{ animationDelay: $index * 50 + 'ms' }"
+>
   <div
-    class="col-12 col-md-6 col-lg-3 cartes mb-4 shadow-sm border border-light"
-    [ngStyle]="{ animationDelay: $index * 50 + 'ms' }"
+    class="card h-100 shadow border-0 rounded-3 bg-light text-dark dark-mode-card p-3 cartes"
   >
-    <div class="mb-1">
-      <h5 class="text-primary">{{ item.title }}</h5>
-      <span class="text-info">{{ item.sportType }}</span>
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h5 class="mb-0">{{ item.title }}</h5>
+      <small class="text-primary">{{ item.sportType }}</small>
     </div>
-    <div>
-      <p>
-        Lieu de l'événement:
-        <span class="text-info d-block">{{ item.location }}</span>
-      </p>
-      <a [routerLink]="['/dashboard/events', item._id]" class="btn btn-primary">
-        Voir <i class="bi bi-search"></i>
+
+    <p class="mb-2">
+      <i class="bi bi-geo-alt-fill"></i>
+      <span class="mx-2 fw-semibold">Lieu :</span>
+      <span class="text-primary">{{ item.location }}</span>
+    </p>
+
+    <p class="mb-2">
+      <i class="bi bi-calendar"></i>
+      <span class="mx-2 fw-semibold">Date :</span>
+      <span class="text-warning">{{ item.fDate }}</span>
+    </p>
+
+    <div class="mt-auto mx-auto">
+      <a
+        [routerLink]="['/dashboard/events', item._id]"
+        class="btn btn-outline-primary"
+      >
+        <i class="bi bi-search me-1"></i> Voir
       </a>
     </div>
-    <div class="d-flex justify-content-between text-primary mt-1">
-      <p>
-        Date prévue: <span class="text-warning d-block">{{ item.fDate }}</span>
-      </p>
-    </div>
   </div>
+</div>
+
 } @empty {
-  <div class="alert alert-info text-center py-5">
-    Aucuns événements disponible
-  </div>
+<div class="alert alert-info text-center py-5">
+  Aucuns événements disponible
+</div>
 }
 <div class="d-flex justify-content-center gap-3">
   <button
-    class="btn btn-success"
+    class="btn btn-primary"
     [disabled]="parameters.page <= 1"
     (click)="prevPage()"
   >
@@ -48,7 +60,7 @@
     Page précédente
   </button>
   <button
-    class="btn btn-success"
+    class="btn btn-primary"
     [disabled]="parameters.totalPages <= parameters.page"
     (click)="nextPage()"
   >

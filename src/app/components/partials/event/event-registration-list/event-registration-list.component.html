@@ -32,7 +32,7 @@
           <p><strong>Lieu :</strong> {{ registration.event.location }}</p>
           <p>
             <strong>Date :</strong>
-            {{ registration.event.date | date: "medium" }}
+            {{ registration.event.date | date : "medium" }}
           </p>
           <hr />
           <p>
@@ -46,13 +46,13 @@
           </p>
         </div>
         <div class="card-footer text-muted small">
-          Créée le : {{ registration.createdAt | date: "short" }}
+          Créée le : {{ registration.createdAt | date : "short" }}
         </div>
       </div>
     </div>
     <div class="d-flex justify-content-center gap-3">
       <button
-        class="btn btn-success"
+        class="btn btn-primary"
         [disabled]="parameters.page <= 1"
         (click)="prevPage()"
       >
@@ -60,7 +60,7 @@
         Page précédente
       </button>
       <button
-        class="btn btn-success"
+        class="btn btn-primary"
         [disabled]="parameters.totalPages <= parameters.page"
         (click)="nextPage()"
       >
