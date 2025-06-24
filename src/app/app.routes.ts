@@ -23,28 +23,55 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    canActivate: [authGuardGuard],
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'user/:id', component: UserComponent },
+      {
+        path: 'user/:id',
+        component: UserComponent,
+        canActivate: [authGuardGuard],
+      },
       {
         path: 'profile',
-        canActivate: [RoleGuard],
+        canActivate: [authGuardGuard, RoleGuard],
         component: ProfileComponent,
       },
-      { path: 'profile/sportif', component: SportifProfileComponent },
-      { path: 'profile/admin', component: AdminProfileComponent },
-      { path: 'profile/organizer', component: OrganizerProfileComponent },
+      {
+        path: 'profile/sportif',
+        component: SportifProfileComponent,
+        canActivate: [authGuardGuard],
+      },
+      {
+        path: 'profile/admin',
+        component: AdminProfileComponent,
+        canActivate: [authGuardGuard],
+      },
+      {
+        path: 'profile/organizer',
+        component: OrganizerProfileComponent,
+        canActivate: [authGuardGuard],
+      },
       {
         path: 'events',
         children: [
-          { path: 'new', component: EventFormComponent },
-          { path: 'edit/:id', component: EventFormComponent },
+          {
+            path: 'new',
+            component: EventFormComponent,
+            canActivate: [authGuardGuard],
+          },
+          {
+            path: 'edit/:id',
+            component: EventFormComponent,
+            canActivate: [authGuardGuard],
+          },
           { path: ':id', component: EventComponent },
         ],
       },
 
-      { path: 'params', component: ParamsUserComponent },
+      {
+        path: 'params',
+        component: ParamsUserComponent,
+        canActivate: [authGuardGuard],
+      },
     ],
   },
   { path: '**', redirectTo: '' },

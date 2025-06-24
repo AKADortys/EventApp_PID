@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApiBackService } from '../../../../services/api-back.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registration-form',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './registration-form.component.html',
   styleUrl: './registration-form.component.scss',
 })
@@ -20,7 +20,7 @@ export class RegistrationFormComponent implements OnInit {
 
   constructor(
     private readonly apiBack: ApiBackService,
-    private readonly router: Router, // injection du Router
+    private readonly router: Router // injection du Router
   ) {}
 
   ngOnInit(): void {

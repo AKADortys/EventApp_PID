@@ -68,7 +68,7 @@
       <!-- Formulaire d'inscription -->
       <app-registration-form
         *ngIf="
-          role === 'sportif' &&
+          role !== 'organisateur' &&
           event.maxParticipants > event.participants.length
         "
         [eventId]="eventId"

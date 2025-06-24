@@ -11,7 +11,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { UserRegist, User } from '../../../models/users.interface';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register-form-ath',
@@ -22,7 +22,10 @@ import { RouterLink } from '@angular/router';
 export class RegisterFormAthComponent {
   userForm!: FormGroup;
 
-  constructor(private readonly apiBackService: ApiBackService) {
+  constructor(
+    private readonly apiBackService: ApiBackService,
+    private readonly router: Router
+  ) {
     this.userForm = new FormGroup(
       {
         name: new FormControl('', [
@@ -48,12 +51,12 @@ export class RegisterFormAthComponent {
         mail: new FormControl('', [Validators.required, Validators.email]),
         role: new FormControl('sportif', Validators.required),
       },
-      { validators: this.passwordsMatch },
+      { validators: this.passwordsMatch }
     );
   }
 
   passwordsMatch: ValidatorFn = (
-    control: AbstractControl,
+    control: AbstractControl
   ): ValidationErrors | null => {
     const group = control as FormGroup;
     const password = group.get('password')?.value;
@@ -76,6 +79,7 @@ export class RegisterFormAthComponent {
             text: 'Bienvenue, votre compte a été créé.',
           });
           this.userForm.reset();
+          this.router.navigate(['/']);
         },
         error: (err: Error) => {
           Swal.fire({

@@ -5,8 +5,6 @@
   class="cartes"
 ></app-event-detail>
 
-@if (user?.role !== "sportif") {
-  <app-event-registration-list
-    [eventId]="eventId"
-  ></app-event-registration-list>
+@if (user?.role === "organisateur" || user?.role === "admin") {
+<app-event-registration-list [eventId]="eventId"></app-event-registration-list>
 }
