@@ -40,10 +40,6 @@
             {{ registration.user.lastName }}
           </p>
           <p><strong>Email :</strong> {{ registration.user.mail }}</p>
-          <p>
-            <span class="badge bg-success me-1">{{ registration.status }}</span>
-            <span class="badge bg-info">{{ registration.paymentStatus }}</span>
-          </p>
         </div>
         <div class="card-footer text-muted small">
           Créée le : {{ registration.createdAt | date : "short" }}

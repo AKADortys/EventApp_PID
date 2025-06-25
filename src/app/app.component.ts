@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   constructor(
     private readonly authUserService: AuthUserService,
     private readonly apiBackService: ApiBackService,
-    private readonly router: Router,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {

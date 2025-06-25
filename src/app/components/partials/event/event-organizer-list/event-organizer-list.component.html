@@ -8,60 +8,67 @@
   class="d-flex flex-column flex-md-row align-items-center gap-1 rounded p-1 text-dark mb-4"
 >
 </app-pagination-controls-component>
-<div class="d-flex flex-wrap">
+<div class="d-flex flex-wrap justify-content- gap-5">
   @for (item of events; track item._id) {
   <div
-    class="card col-6 col-xl-4 p-0 cartes"
+    class="card cartes col-12 col-md-6 col-xl-4 shadow-sm border-0"
     [ngStyle]="{ animationDelay: $index * 100 + 'ms' }"
   >
-    <div class="card-header bg-dark bg-gradient">
-      <h5 class="text-primary">{{ item.title }}</h5>
-      <span class="text-light">{{ item.sportType }}</span>
+    <div class="card-header bg-dark bg-gradient text-white d-flex flex-column">
+      <h5 class="mb-1 text-primary">{{ item.title }}</h5>
+      <small class="text-light"
+        ><i class="bi bi-trophy-fill me-1"></i>{{ item.sportType }}</small
+      >
     </div>
-    <div class="card-body">
+
+    <div class="card-body bg-light text-dark">
       <p>
-        Lieu de l'événement:
-        <span class="text-info">{{ item.location }}</span>
+        <i class="bi bi-geo-alt-fill text-info me-2"></i>
+        Lieu : <span class="text-info fw-semibold">{{ item.location }}</span>
       </p>
-      <div class="d-flex justify-content-between mt-2">
+
+      <div class="d-flex justify-content-between mt-3 flex-wrap gap-2">
         <a
           [routerLink]="['/dashboard/events', item._id]"
-          class="btn btn-primary"
+          class="btn btn-sm btn-outline-primary"
         >
-          Voir <i class="bi bi-search"></i>
+          <i class="bi bi-search me-1"></i> Voir
         </a>
+
         <a
           [routerLink]="['/dashboard/events/edit', item._id]"
-          class="btn btn-warning"
-          >Modifier <i class="bi bi-pencil-square"></i
-        ></a>
-        <button class="btn btn-danger" (click)="deleteEvent(item._id)">
-          Supprimer
-          <i class="bi bi-trash3-fill"></i>
+          class="btn btn-sm btn-outline-warning"
+        >
+          <i class="bi bi-pencil-square me-1"></i> Modifier
+        </a>
+
+        <button
+          class="btn btn-sm btn-outline-danger"
+          (click)="deleteEvent(item._id)"
+        >
+          <i class="bi bi-trash3-fill me-1"></i> Supprimer
         </button>
       </div>
     </div>
-    <div
-      class="card-footer d-flex justify-content-between bg-dark bg-gradient text-light"
-    >
-      <p>
-        Date prévue: <span class="text-warning">{{ item.fDate }}</span>
-      </p>
+
+    <div class="card-footer bg-dark bg-gradient text-white">
+      <small>
+        <i class="bi bi-calendar-event-fill me-2 text-warning"></i>
+        Date prévue : <span class="text-warning">{{ item.fDate }}</span>
+      </small>
     </div>
   </div>
   } @empty {
-  <div class="alert alert-info w-100 text-center py-5">
-    <p>Vous n'avez pas créer d'événements</p>
-    <a
-      routerLink="/dashboard/events/new"
-      class="list-group-item list-group-item-action list-group-item-success w-50 mx-auto"
-    >
-      <i class="bi bi-plus-square-fill"></i>
+  <div class="alert alert-light w-100 text-center py-5 shadow-sm">
+    <p class="text-muted">Vous n'avez pas encore créé d'événements</p>
+    <a routerLink="/dashboard/events/new" class="btn btn-success btn-lg mt-3">
+      <i class="bi bi-plus-square-fill me-2"></i>
       Créer un événement
     </a>
   </div>
   }
 </div>
+
 <div class="d-flex justify-content-center gap-3">
   <button
     class="btn btn-primary"
