@@ -17,6 +17,15 @@
   <div
     class="card h-100 shadow border-0 rounded-3 bg-light text-dark dark-mode-card p-3 cartes"
   >
+    <img
+      [src]="
+        item.imageUrl ||
+        'https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png'
+      "
+      alt="Image de l'événements"
+      class="card-img-top"
+      style="max-height: 500px"
+    />
     <div class="d-flex justify-content-between align-items-center mb-2">
       <h5 class="mb-0">{{ item.title }}</h5>
       <small class="text-primary">{{ item.sportType }}</small>

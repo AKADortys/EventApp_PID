@@ -108,6 +108,23 @@
       </div>
     </div>
 
+    <div class="col-md-6">
+      <label for="imageUrl" class="form-label">
+        <i class="bi bi-image"></i> Images
+        <small class="muted">(optinnel)</small>
+      </label>
+      <input
+        type="text"
+        id="imageUrl"
+        class="form-control"
+        formControlName="imageUrl"
+        [class.is-valid]="isInvalid('imageUrl')"
+      />
+      <div class="invalid-feedback" *ngIf="isInvalid('imageUrl')">
+        {{ getError("imageUrl") }}
+      </div>
+    </div>
+
     <div class="col-12 d-flex gap-3">
       <button
         type="submit"
