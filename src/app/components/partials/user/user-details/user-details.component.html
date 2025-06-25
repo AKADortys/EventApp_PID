@@ -1,19 +1,37 @@
 @if (user) {
-  <div class="alert alert-info cartes">
-    <h1 class="display-1 text-center">
-      {{ user.name + " " + user.lastName }}
-      <span class="bg-success text-white p-2 fs-1 rounded">{{
-        user.role
-      }}</span>
-    </h1>
-    <div class="bg-dark rounded mt-2 text-white p-2">
-      <h2 class="display-4">Coordonnées</h2>
-      <p>
+<div class="card col-10 col-md-8 col-lg-6 col-xl-4 mx-auto my-5 cartes">
+  <h1 class="card-title display-1 text-center">
+    {{ user.name + " " + user.lastName }}
+    <span class="bg-success text-white p-2 fs-1 rounded">{{ user.role }}</span>
+  </h1>
+  <div class="card-body mt-2 text-dark p-2">
+    <h2 class="display-4">Infos utilisateur</h2>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
         Telephone: <span class="text-warning">{{ user.phone }}</span>
-      </p>
-      <p>
+      </li>
+      <li class="list-group-item">
         Email: <span class="text-warning">{{ user.mail }}</span>
-      </p>
-    </div>
+      </li>
+      <li class="list-group-item">
+        Date de naissance:
+        <span class="text-warning">{{
+          user.birthday | date : "dd/MM/YYYY"
+        }}</span>
+      </li>
+      <li class="list-group-item">
+        Sexe: <span class="text-warning">{{ user.gender }}</span>
+      </li>
+      <li class="list-group-item">
+        <button class="btn btn-primary mx-5 mt-3" (click)="goBack()">
+          Retour
+        </button>
+      </li>
+    </ul>
   </div>
+</div>
+}@else {
+<div class="alert alert-danger">
+  {{ error }}
+</div>
 }

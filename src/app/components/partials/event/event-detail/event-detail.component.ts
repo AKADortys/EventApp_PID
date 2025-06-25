@@ -32,18 +32,17 @@ export class EventDetailComponent implements OnInit {
       next: (response: any) => {
         this.event = response;
         const isAlreadyRegis = this.event.participants.find(
-          (n: any) => n._id === this.userId,
+          (n: any) => n._id === this.userId
         );
         if (isAlreadyRegis) {
           this.isResgister = true;
         }
+        this.isLoading = false;
       },
       error: (err: Error) => {
         this.error = err.message;
-        this.event = null;
-      },
-      complete: () => {
         this.isLoading = false;
+        this.event = null;
       },
     });
   }
