@@ -1,6 +1,6 @@
 <form
   [formGroup]="form"
-  class="row g-3 justify-content-center p-4 border rounded shadow-lg m-4 bg-body text-body w-75 mx-auto my-5"
+  class="row g-3 justify-content-center p-4 border rounded shadow-lg my-5 bg-body text-body w-75 mx-auto"
   (ngSubmit)="submit()"
   novalidate
 >
@@ -44,6 +44,53 @@
       />
     </div>
     <div class="invalid-feedback">Le nom est requis (min. 3 caractères).</div>
+  </div>
+
+  <!-- Date de naissance -->
+  <div class="col-12 col-md-6">
+    <label for="birthday" class="form-label">Date de naissance</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="bi bi-calendar-date"></i></span>
+      <input
+        type="date"
+        id="birthday"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            form.get('birthday')?.invalid && form.get('birthday')?.touched,
+          'is-valid':
+            form.get('birthday')?.valid && form.get('birthday')?.touched
+        }"
+        formControlName="birthday"
+      />
+    </div>
+    <div class="invalid-feedback">La date de naissance est requise.</div>
+  </div>
+
+  <!-- Genre -->
+  <div class="col-12 col-md-6">
+    <label for="gender" class="form-label">Genre</label>
+    <div class="input-group">
+      <span class="input-group-text"
+        ><i class="bi bi-gender-ambiguous"></i
+      ></span>
+      <select
+        id="gender"
+        class="form-select"
+        formControlName="gender"
+        [ngClass]="{
+          'is-invalid':
+            form.get('gender')?.invalid && form.get('gender')?.touched,
+          'is-valid': form.get('gender')?.valid && form.get('gender')?.touched
+        }"
+      >
+        <option value="">-- Sélectionnez --</option>
+        <option value="homme">Homme</option>
+        <option value="femme">Femme</option>
+        <option value="autres">Autre</option>
+      </select>
+    </div>
+    <div class="invalid-feedback">Le genre est requis.</div>
   </div>
 
   <!-- Mot de passe -->

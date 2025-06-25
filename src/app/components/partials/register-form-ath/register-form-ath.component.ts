@@ -36,6 +36,8 @@ export class RegisterFormAthComponent {
           Validators.required,
           Validators.minLength(3),
         ]),
+        gender: new FormControl('', [Validators.required]),
+        birthday: new FormControl('', [Validators.required]),
         password: new FormControl('', [
           Validators.required,
           Validators.pattern('^(?=.*[A-Z])(?=.*\\d).{8,}$'),
@@ -67,9 +69,18 @@ export class RegisterFormAthComponent {
 
   submit() {
     if (this.userForm.valid) {
-      const { name, lastName, password, phone, mail, role } =
+      const { name, lastName, password, phone, mail, role, birthday, gender } =
         this.userForm.value;
-      const user: UserRegist = { name, lastName, password, phone, mail, role };
+      const user: UserRegist = {
+        name,
+        lastName,
+        password,
+        phone,
+        mail,
+        role,
+        birthday,
+        gender,
+      };
 
       this.apiBackService.register(user).subscribe({
         next: (response: any) => {

@@ -27,7 +27,7 @@ export class UserUpdtFormComponent {
   constructor(
     private readonly apiBack: ApiBackService,
     private readonly authService: AuthUserService,
-    private readonly router: Router,
+    private readonly router: Router
   ) {
     this.user = this.authService.getUser();
     this.form = new FormGroup(
@@ -54,13 +54,16 @@ export class UserUpdtFormComponent {
           Validators.required,
           Validators.email,
         ]),
+        birthday: new FormControl(this.user?.birthday, [Validators.required]),
+        gender: new FormControl(this.user?.gender || '', [Validators.required]),
       },
-      { validators: this.passwordsMatch },
+      { validators: this.passwordsMatch }
     );
+    console.log(this.user?.birthday);
   }
 
   passwordsMatch: ValidatorFn = (
-    control: AbstractControl,
+    control: AbstractControl
   ): ValidationErrors | null => {
     const group = control as FormGroup;
     const password = group.get('password')?.value;
@@ -71,9 +74,9 @@ export class UserUpdtFormComponent {
 
   submit() {
     if (this.form.valid) {
-      const { name, lastName, password, cPassword, phone, mail } =
+      const { name, lastName, password, birthday, gender, phone, mail } =
         this.form.value;
-      const user: any = { name, lastName, phone, mail };
+      const user: any = { name, lastName, phone, mail, birthday, gender };
       if (password) user.password = password;
 
       this.apiBack.updateUser(this.user?._id, user).subscribe({

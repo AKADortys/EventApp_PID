@@ -14,29 +14,32 @@
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-// body {
-//   background: linear-gradient(270deg, #a6a5a5, #7d7d7d, #5c5c5c, #272727);
-//   background-size: 400% 400%;
-//   animation: gradient 25s ease infinite;
-// }
-
-// @keyframes gradient {
-//   0% {
-//     background-position: 0% 50%;
-//   }
-//   50% {
-//     background-position: 100% 50%;
-//   }
-//   100% {
-//     background-position: 0% 50%;
-//   }
-// }
-
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #f8f9fa, #eaeef3, #dee5ef, #f8f9fa);
+  background-size: 400% 400%;
+  animation: gradientMove 10s ease infinite;
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+}
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 // body {
 //   background: radial-gradient(circle, #777777 10%, transparent 11%),
 //     radial-gradient(circle at bottom left, #777777 5%, transparent 6%),
 //     radial-gradient(circle at bottom right, #777777 5%, transparent 6%),
 //     radial-gradient(circle at top left, #777777 5%, transparent 6%),
 //     radial-gradient(circle at top right, #777777 5%, transparent 6%);
-//   background-size: 1em 1em;
+//   background-size: 1.5em 1.5em;
 // }

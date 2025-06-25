@@ -17,10 +17,11 @@
         </li>
         <li class="list-group-item"><strong>Rôle :</strong> {{ user.role }}</li>
         <li class="list-group-item">
-          <strong>Créé le :</strong> {{ user.createdAt | date: "short" }}
+          <strong>Date de naissance :</strong>
+          {{ user.birthday | date : "dd/MM/YYYY" }}
         </li>
         <li class="list-group-item">
-          <strong>Modifié le :</strong> {{ user.updatedAt | date: "short" }}
+          <strong>Genre :</strong> {{ user.gender }}
         </li>
         <li class="list-group-item"><strong>ID :</strong> {{ user._id }}</li>
       </ul>

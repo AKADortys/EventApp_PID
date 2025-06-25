@@ -5,6 +5,8 @@ export interface UserRegist {
   phone: string;
   mail: string;
   role?: string;
+  gender?: string;
+  birthday: string;
 }
 
 export interface User {
@@ -18,4 +20,6 @@ export interface User {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  gender?: string;
+  birthday: string;
 }
