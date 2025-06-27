@@ -1,13 +1,19 @@
-<h3 class="display-2 text-primary">Événements</h3>
-<app-pagination-controls-component
-  [page]="parameters.page"
-  [limit]="parameters.limit"
-  [totalPages]="parameters.totalPages"
-  [total]="parameters.total"
-  (changePage)="onPageChanged($event.search, $event.page, $event.limit)"
-  class="d-flex flex-column flex-md-row align-items-center gap-3 rounded p-1 text-dark mb-4"
->
-</app-pagination-controls-component>
+<div class="container-fluid">
+  <h3
+    class="display-1 text-dark text-center mb-2 titre col-12 col-md-6 mx-auto"
+  >
+    Nos événements sportifs les plus récents...
+  </h3>
+  <app-pagination-controls-component
+    [page]="parameters.page"
+    [limit]="parameters.limit"
+    [totalPages]="parameters.totalPages"
+    [total]="parameters.total"
+    (changePage)="onPageChanged($event.search, $event.page, $event.limit)"
+    class="d-flex flex-column flex-md-row align-items-center gap-3 rounded p-1 text-dark mb-4"
+  >
+  </app-pagination-controls-component>
+</div>
 
 @for (item of events; track item._id) {
 <div

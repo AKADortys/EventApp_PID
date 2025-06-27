@@ -14,11 +14,11 @@
   "
   class="d-flex flex-column flex-md-row align-items-center gap-1 rounded p-1 text-dark mb-4"
 ></app-pagination-controls-component>
-<div class="row">
+<div class="row d-flex gap-2 flex-wrap justify-content-around">
   @for (item of registrations; track item._id) {
-  <div class="card shadow-sm border col-12 col-xl-6 my-1 p-0 cartes">
+  <div class="card shadow-sm border col-12 col-md-5 col-lg-3 my-1 p-0 cartes">
     <div class="card-header bg-dark bg-gradient text-white">
-      <h5 class="card-title mb-0">
+      <h5 class="card-title mb-0 text-primary">
         {{ item.event.title }} -
         {{ item.event.sportType | titlecase }}
       </h5>
@@ -30,11 +30,7 @@
         {{ item.event.date | date : "medium" }}
       </p>
       <hr />
-      <p>
-        <strong>Participant :</strong> {{ item.user.name }}
-        {{ item.user.lastName }}
-      </p>
-      <p><strong>Email :</strong> {{ item.user.mail }}</p>
+
       <a
         [routerLink]="['/dashboard/events', item.event._id]"
         class="btn btn-primary mb-2"
@@ -42,12 +38,8 @@
         Voir plus
         <i class="bi bi-search"></i
       ></a>
-      <p>
-        <span class="badge bg-success me-1">{{ item.status }}</span>
-        <span class="badge bg-info">{{ item.paymentStatus }}</span>
-      </p>
     </div>
-    <div class="card-footer text-light small bg-dark bg-gradient">
+    <div class="card-footer text-warning small bg-dark bg-gradient">
       Créée le : {{ item.createdAt | date : "short" }}
     </div>
   </div>
