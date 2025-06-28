@@ -20,7 +20,7 @@ import { RouterModule } from '@angular/router';
 })
 export class EventListComponent implements OnInit {
   currentTime: Date = new Date();
-  events: any[] = [];
+  events!: any[] | null;
   parameters: searchQuery = {
     page: 1,
     total: 0,
@@ -52,13 +52,11 @@ export class EventListComponent implements OnInit {
 
         this.events = data;
         this.parameters = rest;
-        this.error = '';
+        this.isLoading = false;
       },
       error: (err: Error) => {
         this.error = err.message;
-        this.events = [];
-      },
-      complete: () => {
+        this.events = null;
         this.isLoading = false;
       },
     });
